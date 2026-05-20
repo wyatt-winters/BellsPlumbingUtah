@@ -1,0 +1,9 @@
+.bp-shell-footer{background:#0b1f3a;color:#cfd9ea;margin-top:3rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.bp-shell-finner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;padding:2.5rem 1.25rem}
+.bp-shell-footer h4{color:#fff;font-size:1rem;margin:0 0 .6rem;letter-spacing:.5px}
+.bp-shell-footer ul{list-style:none;padding:0;margin:0}
+.bp-shell-footer li{margin:.25rem 0}
+.bp-shell-footer a{color:#cfd9ea;text-decoration:none;font-size:.9rem}
+.bp-shell-footer a:hover{color:#fff}
+
+.bp-shell-fbottom{border-top:1px solid #13294d;text-align:center;padding:.9rem 1rem;font-size:.8rem;color:#8a9fc1}
