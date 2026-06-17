@@ -18,16 +18,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP (SSH)
-        uses: easingthemes/ssh-deploy@v5.0.3
-        with:
-          SSH_EXCLUDE: ".git*, .github, scripts, *.zip, blog/schedule.json, blog/bot-state.json, blog/bot.log, blog/publish.log, README.txt, blog/README.md"
-          REMOTE_HOST: agentadvisers.com
-          REMOTE_USER: ${{ secrets.FTP_USERNAME }}
-          REMOTE_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          REMOTE_PORT: 22
-          SOURCE: ./
-          TARGET: /home1/agentors/public_html/website_302faf96/
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Deploy via rsync over SFTP/SSH
+        env:
+          SSHPASS: ${{ secrets.FTP_PASSWORD }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+        run: |
+          sshpass -e rsync -avz \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'scripts/' \
+            --exclude '*.zip' \
+            --exclude 'blog/schedule.json' \
+            --exclude 'blog/bot-state.json' \
+            --exclude 'blog/bot.log' \
+            --exclude 'blog/publish.log' \
+            --exclude '.DS_Store' \
+            -e "ssh -o StrictHostKeyChecking=no -p 22" \
+            ./ "${FTP_USERNAME}@agentadvisers.com:/home1/agentors/public_html/website_302faf96/"
 
       - name: Wake blog bot after deploy
         run: |
