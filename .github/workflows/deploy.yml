@@ -12,33 +12,39 @@ concurrency:
 
 jobs:
   deploy:
-    name: SFTP deploy to cPanel
+    name: FTP deploy to cPanel
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install sshpass
-        run: sudo apt-get update && sudo apt-get install -y sshpass
-
-      - name: Deploy via rsync over SFTP/SSH
-        env:
-          SSHPASS: ${{ secrets.FTP_PASSWORD }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-        run: |
-          sshpass -e rsync -avz \
-            --exclude '.git/' \
-            --exclude '.github/' \
-            --exclude 'scripts/' \
-            --exclude '*.zip' \
-            --exclude 'blog/schedule.json' \
-            --exclude 'blog/bot-state.json' \
-            --exclude 'blog/bot.log' \
-            --exclude 'blog/publish.log' \
-            --exclude '.DS_Store' \
-            -e "ssh -o StrictHostKeyChecking=no -p 22" \
-            ./ "${FTP_USERNAME}@agentadvisers.com:/home1/agentors/public_html/website_302faf96/"
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 192.254.188.195
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          security: explicit
+          local-dir: ./
+          server-dir: /home1/agentors/public_html/website_302faf96/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/.gitignore
+            **/README.txt
+            **/blog/README.md
+            **/*.zip
+            **/.DS_Store
+            **/scripts/**
+            **/blog/schedule.json
+            **/blog/bot-state.json
+            **/blog/bot.log
+            **/blog/publish.log
 
       - name: Wake blog bot after deploy
+        if: success()
         run: |
-          curl -sf "https://bellsplumbingutah.com/blog/bot.php?key=${{ secrets.BLOG_BOT_KEY }}" || echo "Bot wake skipped (may need first manual run)"
+          curl -sf "https://bellsplumbingutah.com/blog/bot.php?key=${{ secrets.BLOG_BOT_KEY }}" || echo "Bot wake skipped"
