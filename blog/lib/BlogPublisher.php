@@ -249,7 +249,9 @@ HTML,
         }
 
         $faqHtml = '';
-        foreach ($faqs as [$q, $a]) {
+        foreach ($faqs as $faq) {
+            $q = $faq[0];
+            $a = $faq[1];
             $faqHtml .= '<details class="blog-faq"><summary>' . $this->e($q) . '</summary><p>' . $a . '</p></details>';
         }
         $sections[] = ['type' => 'h2', 'text' => 'Frequently Asked Questions', 'html' => $faqHtml];
@@ -269,7 +271,10 @@ HTML,
             ['Contact', "{$prefix}index.html#contact", 'contact'],
         ];
         $out = '';
-        foreach ($links as [$label, $href, $key]) {
+        foreach ($links as $link) {
+            $label = $link[0];
+            $href = $link[1];
+            $key = $link[2];
             $cls = $key === $active
                 ? 'text-[#F5A623] bg-[#FFF3D6]'
                 : 'text-[#0B1D3A] hover:text-[#F5A623]';
