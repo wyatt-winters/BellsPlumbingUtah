@@ -7,8 +7,8 @@ class BlogPublisher
 
     public function __construct(?string $root = null)
     {
-        $this->root = $root ?: dirname(__DIR__);
-        $this->cfg = require __DIR__ . '/config.php';
+        $this->root = $root ?: dirname(dirname(__DIR__));
+        $this->cfg = require $this->root . '/blog/config.php';
         date_default_timezone_set($this->cfg['timezone'] ?? 'America/Denver');
     }
 
