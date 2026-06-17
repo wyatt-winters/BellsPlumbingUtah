@@ -1,0 +1,5 @@
+.DS_Store
+*.zip
+blog/bot.log
+blog/publish.log
+blog/bot-state.json

@@ -1,0 +1,48 @@
+name: Deploy to production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-bellsplumbing
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: SFTP deploy to cPanel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: agentadvisers.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: sftp
+          port: 22
+          local-dir: ./
+          server-dir: /home1/agentors/public_html/website_302faf96/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/.gitignore
+            **/README.txt
+            **/blog/README.md
+            **/*.zip
+            **/.DS_Store
+            **/scripts/**
+            **/blog/schedule.json
+            **/blog/bot-state.json
+            **/blog/bot.log
+            **/blog/publish.log
+
+      - name: Wake blog bot after deploy
+        run: |
+          curl -sf "https://bellsplumbingutah.com/blog/bot.php?key=${{ secrets.BLOG_BOT_KEY }}" || echo "Bot wake skipped (may need first manual run)"
