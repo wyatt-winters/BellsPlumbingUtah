@@ -28,9 +28,10 @@ jobs:
           port: 21
           security: loose
           local-dir: ./
-          server-dir: /home1/agentors/public_html/website_302faf96/
+          server-dir: ./
           dangerous-clean-slate: false
           exclude: |
+            **/.git/**
             **/.git*
             **/.github/**
             **/.gitignore
