@@ -62,7 +62,11 @@ foreach ($topics as $t) {
 
 $status = $state['status'] ?? 'unknown';
 $heartbeat = $state['heartbeat_at'] ?? 'Never';
-$esc = fn ($s) => htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
+function bells_esc($s)
+{
+    return htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
+}
+$esc = 'bells_esc';
 $statusColor = $status === 'alive' ? '#22c55e' : '#f59e0b';
 ?>
 <!DOCTYPE html>

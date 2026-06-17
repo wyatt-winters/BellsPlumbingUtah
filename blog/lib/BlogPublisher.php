@@ -95,18 +95,27 @@ class BlogPublisher
     {
         $desc = sprintf(
             '%s. Licensed Utah plumber serving %s and %s. Same-day %s. Call %s for a free estimate.',
-            mb_substr($topic['title'], 0, 120),
+            substr($topic['title'], 0, 120),
             $topic['city'],
             $this->cfg['counties'],
             $topic['service'],
             $this->cfg['phone']
         );
-        return mb_substr($desc, 0, 160);
+        return substr($desc, 0, 160);
     }
 
     private function serviceTitle(string $service): string
     {
-        return mb_convert_case($service, MB_CASE_TITLE, 'UTF-8');
+        return ucwords($service);
+    }
+
+    private function listItems(array $items): string
+    {
+        $html = '';
+        foreach ($items as $item) {
+            $html .= '<li>' . $this->e($item) . '</li>';
+        }
+        return $html;
     }
 
     private function articleBody(array $topic): array
@@ -185,23 +194,23 @@ class BlogPublisher
             [
                 'type' => 'h2',
                 'text' => 'Signs You Need ' . $this->serviceTitle($service) . ' Help',
-                'html' => '<ul>' . implode('', array_map(fn ($s) => '<li>' . $this->e($s) . '</li>', $signs)) . '</ul>',
+                'html' => '<ul>' . $this->listItems($signs) . '</ul>',
             ],
             [
                 'type' => 'h2',
                 'text' => "Common Causes in {$city} and Northern Utah",
-                'html' => '<ul>' . implode('', array_map(fn ($c) => '<li>' . $this->e($c) . '</li>', $causes)) . '</ul>',
+                'html' => '<ul>' . $this->listItems($causes) . '</ul>',
             ],
             [
                 'type' => 'h2',
                 'text' => 'What You Can Check Before Calling',
                 'html' => '<p>These steps are safe for most homeowners and can save time when our technician arrives:</p><ul>'
-                    . implode('', array_map(fn ($d) => '<li>' . $this->e($d) . '</li>', $diySafe)) . '</ul>',
+                    . $this->listItems($diySafe) . '</ul>',
             ],
             [
                 'type' => 'h2',
                 'text' => 'When to Call a Licensed Plumber Immediately',
-                'html' => '<ul>' . implode('', array_map(fn ($c) => '<li>' . $this->e($c) . '</li>', $callPro)) . '</ul>',
+                'html' => '<ul>' . $this->listItems($callPro) . '</ul>',
             ],
             [
                 'type' => 'h2',
@@ -466,13 +475,15 @@ HTML;
         );
         $canonical = $this->cfg['site'] . '/Blog.html';
 
-        usort($published, fn ($a, $b) => strcmp($b['publish_date'], $a['publish_date']));
+        usort($published, function ($a, $b) {
+            return strcmp($b['publish_date'], $a['publish_date']);
+        });
 
         if ($published) {
             $cards = '';
             foreach ($published as $p) {
                 $d = date('M j, Y', strtotime($p['publish_date'] . ' 12:00:00'));
-                $excerpt = $this->e(mb_substr($this->metaDescription($p), 0, 140)) . '…';
+                $excerpt = $this->e(substr($this->metaDescription($p), 0, 140)) . '…';
                 $cards .= <<<HTML
 <article class="blog-card" data-category="{$this->e($p['category'])}">
   <p class="blog-card-cat">{$this->e($p['category'])}</p>
