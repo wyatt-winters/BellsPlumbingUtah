@@ -2,8 +2,8 @@
 
 class BlogPublisher
 {
-    private string $root;
-    private array $cfg;
+    private $root;
+    private $cfg;
 
     public function __construct(?string $root = null)
     {

@@ -9,8 +9,8 @@ require_once __DIR__ . '/TopicFactory.php';
  */
 class BlogBot
 {
-    private string $root;
-    private array $cfg;
+    private $root;
+    private $cfg;
     private BlogPublisher $publisher;
     private TopicFactory $factory;
 

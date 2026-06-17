@@ -5,15 +5,15 @@
  */
 class TopicFactory
 {
-    private array $cfg;
+    private $cfg;
 
-    private array $cities = [
+    private $cities = [
         'Bountiful', 'Layton', 'Ogden', 'Clearfield', 'Kaysville', 'Farmington',
         'Roy', 'Syracuse', 'Centerville', 'Brigham City', 'Clinton', 'North Salt Lake',
         'Woods Cross', 'South Ogden', 'West Point', 'Magna', 'Perry',
     ];
 
-    private array $categories = [
+    private $categories = [
         'Emergency' => [
             ['service' => 'emergency plumbing', 'keyword' => 'emergency plumber'],
             ['service' => 'burst pipe repair', 'keyword' => 'burst pipe'],
@@ -60,7 +60,7 @@ class TopicFactory
         ],
     ];
 
-    private array $titlePatterns = [
+    private $titlePatterns = [
         '{keyword} in {city} UT: Homeowner Guide from Bells Plumbing',
         'How to Handle {keyword} in {city}, Utah',
         '{city} {keyword}: Signs, Costs, and When to Call a Pro',
