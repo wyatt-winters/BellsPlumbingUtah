@@ -334,10 +334,6 @@ HTML;
       <div class="h-14 w-14 flex items-center justify-center">
         <img src="{$prefix}images/bells-logo.png" alt="Bells Plumbing Logo" class="w-full h-full object-contain">
       </div>
-      <div class="hidden sm:block">
-        <span class="font-bold text-[#0B1D3A] text-lg leading-none">Bells Plumbing</span>
-        <span class="block text-[11px] text-gray-500 font-medium tracking-wide uppercase mt-0.5">Expert Plumbing Services</span>
-      </div>
     </a>
     <nav class="hidden lg:flex items-center gap-1">{$nav}</nav>
     <div class="flex items-center gap-2">
