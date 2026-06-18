@@ -308,7 +308,6 @@ HTML,
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="{$prefix}css/main.css">
 <link rel="stylesheet" href="{$prefix}css/shell.css">
-<link rel="stylesheet" href="{$prefix}css/header.css">
 <link rel="stylesheet" href="{$prefix}css/blog.css">
 <link rel="icon" type="image/png" href="{$prefix}images/bells-logo.png">
 HTML;
@@ -321,14 +320,22 @@ HTML;
         $phoneTel = $this->cfg['phone_tel'];
         $nav = $this->navHtml($active, $depth);
         return <<<HTML
-<header class="site">
-  <div class="wrap header-row">
-    <a href="{$prefix}index.html" class="brand">
-      <img src="{$prefix}images/bells-logo.png?v=7" alt="Bells Plumbing" class="brand-logo" width="400" height="366">
+<div class="bg-[#0B1D3A] text-white text-sm py-2 hidden md:block">
+  <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+    <span class="opacity-80">Bells Plumbing · Expert Plumbing Services · Mon–Sat 7am–7pm</span>
+    <a href="tel:{$phoneTel}" class="flex items-center gap-1.5 font-semibold hover:text-[#F5A623] transition-colors">📞 {$phone}</a>
+  </div>
+</div>
+<header class="sticky top-0 z-50 bg-white transition-shadow duration-300 shadow-sm">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a class="flex items-center gap-3" href="{$prefix}index.html">
+      <div class="h-14 w-14 flex items-center justify-center">
+        <img src="{$prefix}images/bells-logo.png" alt="Bells Plumbing Logo" class="w-full h-full object-contain">
+      </div>
     </a>
-    <nav class="primary">{$nav}</nav>
-    <div class="header-cta">
-      <a href="tel:{$phoneTel}" class="phone-pill"><span class="pulse" aria-hidden="true"></span>{$phone}</a>
+    <nav class="hidden lg:flex items-center gap-1">{$nav}</nav>
+    <div class="flex items-center gap-2">
+      <a href="tel:{$phoneTel}" class="inline-flex items-center justify-center gap-2 shadow h-8 rounded-md px-3 bg-[#F5A623] hover:bg-[#D4891A] text-black font-bold text-sm">📞 {$phone}</a>
     </div>
   </div>
 </header>
@@ -346,7 +353,7 @@ HTML;
   <div class="max-w-6xl mx-auto px-4 py-12">
     <div class="grid md:grid-cols-3 gap-10 mb-8">
       <div>
-        <img src="{$prefix}images/bells-logo.png?v=7" alt="Bells Plumbing" style="height:64px;width:auto;display:block;" loading="lazy">
+        <img src="{$prefix}images/bells-logo.png" alt="Bells Plumbing" style="height:64px;width:auto;background:#fff;padding:8px;border-radius:12px;" loading="lazy">
         <p class="text-sm text-slate-400 mt-4">Licensed &amp; insured. Serving {$counties}.</p>
         <a href="tel:{$phoneTel}" class="text-[#F5A623] font-bold text-lg mt-2 inline-block">{$phone}</a>
       </div>
@@ -454,7 +461,6 @@ HTML;
   </article>
 </main>
 {$footer}
-<script src="{$prefix}js/header-scroll.js?v=1" defer></script>
 </body>
 </html>
 HTML;
@@ -548,7 +554,6 @@ HTML;
   });
 })();
 </script>
-<script src="js/header-scroll.js?v=1" defer></script>
 </body>
 </html>
 HTML;
