@@ -279,7 +279,7 @@ def footer_block(depth: int = 0) -> str:
   <div class="max-w-6xl mx-auto px-4 py-12">
     <div class="grid md:grid-cols-3 gap-10 mb-8">
       <div>
-        <img src="{prefix}images/bells-logo.png" alt="Bells Plumbing" style="height:64px;width:auto;background:#fff;padding:8px;border-radius:12px;" loading="lazy">
+        <img src="{prefix}images/bells-logo.png?v=7" alt="Bells Plumbing" style="height:64px;width:auto;display:block;" loading="lazy">
         <p class="text-sm text-slate-400 mt-4">Licensed &amp; insured. Serving {COUNTIES}.</p>
         <a href="tel:{PHONE_TEL}" class="text-[#F5A623] font-bold text-lg mt-2 inline-block">{PHONE}</a>
       </div>

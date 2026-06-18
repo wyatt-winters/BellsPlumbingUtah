@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "name": "Bells Plumbing Utah",
+  "description": "Licensed emergency plumber in Davis, Weber, Box Elder, and northern Salt Lake County, Utah. Sewer repair, hydro jetting, drain cleaning, and water heater installation.",
+  "url": "https://bellsplumbingutah.com/",
+  "capabilities": ["search", "contact", "quote"],
+  "contact": "muskey1203@gmail.com",
+  "telephone": "+13852558400",
+  "llms_txt": "https://bellsplumbingutah.com/llms.txt",
+  "sitemap": "https://bellsplumbingutah.com/sitemap.xml"
+}
