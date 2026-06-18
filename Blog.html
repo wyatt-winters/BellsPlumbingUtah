@@ -22,26 +22,26 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/blog.css">
 <link rel="icon" type="image/png" href="images/bells-logo.png">
 </head>
 <body class="font-sans antialiased text-[#1F2933] bg-white">
-<div class="bg-[#0B1D3A] text-white text-sm py-2 hidden md:block">
-  <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-    <span class="opacity-80">Bells Plumbing · Expert Plumbing Services · Mon–Sat 7am–7pm</span>
-    <a href="tel:3852558400" class="flex items-center gap-1.5 font-semibold hover:text-[#F5A623] transition-colors">📞 (385) 255-8400</a>
-  </div>
-</div>
-<header class="sticky top-0 z-50 bg-white transition-shadow duration-300 shadow-sm">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a class="flex items-center gap-3" href="index.html">
-      <div class="h-14 w-14 flex items-center justify-center">
-        <img src="images/bells-logo.png" alt="Bells Plumbing Logo" class="w-full h-full object-contain">
-      </div>
+<header class="site">
+  <div class="wrap header-row">
+    <a href="index.html" class="brand">
+      <img src="images/bells-logo.png" alt="Bells Plumbing" class="brand-logo" width="400" height="366">
     </a>
-    <nav class="hidden lg:flex items-center gap-1"><a class="px-3 py-2 text-sm font-medium text-[#0B1D3A] hover:text-[#F5A623] transition-colors rounded-lg hover:bg-[#FFF3D6]" href="index.html">Home</a><a class="px-3 py-2 text-sm font-medium text-[#0B1D3A] hover:text-[#F5A623] transition-colors rounded-lg hover:bg-[#FFF3D6]" href="index.html#services">Services</a><a class="px-3 py-2 text-sm font-medium text-[#0B1D3A] hover:text-[#F5A623] transition-colors rounded-lg hover:bg-[#FFF3D6]" href="index.html#about">About</a><a class="px-3 py-2 text-sm font-medium text-[#F5A623] bg-[#FFF3D6] transition-colors rounded-lg hover:bg-[#FFF3D6]" href="Blog.html">Blog</a><a class="px-3 py-2 text-sm font-medium text-[#0B1D3A] hover:text-[#F5A623] transition-colors rounded-lg hover:bg-[#FFF3D6]" href="index.html#areas">Service Areas</a><a class="px-3 py-2 text-sm font-medium text-[#0B1D3A] hover:text-[#F5A623] transition-colors rounded-lg hover:bg-[#FFF3D6]" href="index.html#contact">Contact</a></nav>
-    <div class="flex items-center gap-2">
-      <a href="tel:3852558400" class="inline-flex items-center justify-center gap-2 shadow h-8 rounded-md px-3 bg-[#F5A623] hover:bg-[#D4891A] text-black font-bold text-sm">📞 (385) 255-8400</a>
+    <nav class="primary">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="Blog.html" class="is-active">Blog</a>
+      <a href="index.html#areas">Service Areas</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:3852558400" class="phone-pill"><span class="pulse" aria-hidden="true"></span>(385) 255-8400</a>
     </div>
   </div>
 </header>
@@ -116,5 +116,6 @@
   });
 })();
 </script>
+<script src="js/header-scroll.js?v=1" defer></script>
 </body>
 </html>
