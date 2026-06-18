@@ -324,7 +324,7 @@ HTML;
 <header class="site">
   <div class="wrap header-row">
     <a href="{$prefix}index.html" class="brand">
-      <img src="{$prefix}images/bells-logo.png?v=3" alt="Bells Plumbing" class="brand-logo" width="400" height="366">
+      <img src="{$prefix}images/bells-logo.png?v=4" alt="Bells Plumbing" class="brand-logo" width="400" height="366">
     </a>
     <nav class="primary">{$nav}</nav>
     <div class="header-cta">
