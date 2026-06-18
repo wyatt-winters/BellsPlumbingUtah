@@ -1,0 +1,25 @@
+---
+description: Push to GitHub triggers automatic FTPS deploy to bellsplumbingutah.com on HostGator
+alwaysApply: true
+---
+
+# GitHub → HostGator deploy
+
+**Edit → push to GitHub → live in ~15 seconds.** No manual cPanel uploads.
+
+When the user asks to **push to GitHub**, **deploy**, or **publish**:
+
+1. Commit pending changes if they asked to include them (or changes are part of the task).
+2. Push to **`main`** on `origin`: https://github.com/wyatt-winters/BellsPlumbingUtah.git
+3. GitHub Actions runs **Deploy to production** (`.github/workflows/deploy.yml`):
+   - FTPS to `192.254.188.195:21` → `/home1/agentors/public_html/website_302faf96/`
+   - Wakes blog bot after upload
+4. Confirm deploy started: https://github.com/wyatt-winters/BellsPlumbingUtah/actions
+
+Do **not** run manual FTP unless GitHub Actions is broken.
+
+**Local path:** `/Users/paden/Documents/sites/Bells Plumbing`  
+**Live site:** https://bellsplumbingutah.com  
+**Secrets (GitHub):** `FTP_USERNAME`, `FTP_PASSWORD`, `BLOG_BOT_KEY`
+
+See `DEPLOY.md` for full pipeline docs.
