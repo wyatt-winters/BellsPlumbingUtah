@@ -1,0 +1,182 @@
+===================================================================
+  UTAH BOILER EXPERTS — PLACEHOLDERS TO FILL BEFORE GOING LIVE
+===================================================================
+
+This deploy adds: dedicated /snow-melt-systems landing page with
+consultation form, sitewide conversion tracking, sitewide LIVE
+Google reviews (via /reviews.php proxy), and Service/LocalBusiness/
+Plumber/FAQ schema.
+
+There are 3 things you need to fill in. The reviews system requires
+2 values; the analytics tag requires 1 value. Once you fill these
+in, EVERYTHING (rating, count, review text, GBP link) populates
+automatically across all 50 pages.
+
+-------------------------------------------------------------------
+  THING 1 — Google Places API key  (for live reviews)
+-------------------------------------------------------------------
+
+WHAT IT IS:
+  Server-side key that /reviews.php uses to fetch your reviews from
+  Google's Places API once every 24 hours. The key is NEVER sent
+  to browsers — it stays server-side inside reviews.php.
+
+HOW TO GET IT:
+  1. Go to https://console.cloud.google.com/
+  2. Create a project (or pick an existing one)
+  3. APIs & Services → Library → search "Places API (New)" → Enable
+  4. Credentials → Create credentials → API key
+  5. Click the new key → "Edit API key":
+     - Application restrictions: IP addresses
+       Add your HostGator server's IP (find in cPanel → Server Info)
+     - API restrictions: restrict to "Places API (New)"
+  6. Set up billing on the project. Google gives $200/month free
+     Maps Platform credit, which covers ~12,500 Places API calls.
+     With 24h caching, we use ~30 calls/month. Effectively free.
+
+WHERE IT GOES:
+  /reviews.php — line near the top, replace:
+    define('GOOGLE_API_KEY', 'PASTE-YOUR-GOOGLE-API-KEY-HERE');
+  with:
+    define('GOOGLE_API_KEY', 'AIzaSyXXXXXXXXXXXXXXXXXXX');
+
+-------------------------------------------------------------------
+  THING 2 — Google Place ID  (your business's unique GBP identifier)
+-------------------------------------------------------------------
+
+WHAT IT IS:
+  Google's unique ID for your Google Business Profile location.
+  Looks like: ChIJN1t_tDeuEmsRUsoyG83frY4
+
+HOW TO GET IT:
+  Option A — Place ID finder tool:
+    https://developers.google.com/maps/documentation/places/web-service/place-id
+    Search for "Utah Boiler Experts" or "The Other Buddy Plumbing
+    and Heating" — copy the Place ID shown.
+
+  Option B — from a Google Maps URL:
+    Open your business on Google Maps. The URL contains parameters,
+    but the Place ID isn't shown there directly. Use Option A.
+
+  NOTE: If Utah Boiler Experts doesn't have its own GBP yet and
+  you want to use The Other Buddy's GBP, that's fine — reviews
+  will display as that business's reviews. If neither GBP has
+  reviews yet, leave the placeholder and the page falls back to
+  the static testimonials cards.
+
+WHERE IT GOES:
+  /reviews.php — line near the top, replace:
+    define('PLACE_ID',       'PASTE-YOUR-PLACE-ID-HERE');
+  with:
+    define('PLACE_ID',       'ChIJN1t_tDeuEmsRUsoyG83frY4');
+
+VERIFY IT WORKS:
+  After uploading reviews.php with both values filled in, visit:
+    https://utahboilerexperts.com/reviews.php
+  You should see JSON output starting with {"rating":4.9,...
+  If you see {"error":"not_configured"} the constants weren't
+  saved. If you see {"error":"google_api_failed"} the API key
+  or Place ID is wrong, or billing isn't enabled, or the API
+  isn't enabled in the Cloud project.
+
+-------------------------------------------------------------------
+  THING 3 — Google Analytics / Ads tag ID  [CONFIGURED]
+-------------------------------------------------------------------
+
+GA4:  G-DF82TDY0D7
+Ads:  AW-17966193749
+Call conversion label: qPGWCJ26mIMcENW4-fZC
+Site phone for Ads call tracking: (801) 685-3976
+
+Phone clicks fire GA4 click_to_call + Ads conversion via /js/conversions.js
+
+-------------------------------------------------------------------
+  OPTIONAL — Form handler URL (snow-melt consultation form)
+-------------------------------------------------------------------
+
+WHAT IT IS:
+  The endpoint that processes consultation form submissions from
+  the snow-melt page.
+
+OPTIONS:
+  A) Google Apps Script Web App (same pattern as your Other Buddy
+     contact form):
+       script.google.com → New project → write doPost() handler
+       → Deploy → Web app → copy URL
+  B) Formspree, Netlify Forms, Basin, etc.
+  C) Custom PHP at /handlers/consultation.php
+
+WHERE IT GOES:
+  /snow-melt-systems.html — the form's action attribute:
+    Find:    REPLACE_WITH_FORM_HANDLER_URL
+    Replace: https://script.google.com/macros/s/YOUR_ID/exec
+             (or whatever your endpoint URL is)
+
+
+===================================================================
+  WHAT'S AUTO-POPULATED ONCE REVIEWS ARE WIRED UP
+===================================================================
+
+Once you fill in THING 1 (API key) and THING 2 (Place ID), the
+/js/reviews.js client running on every page automatically populates:
+
+  ✓ Hero rating strip on homepage
+    - "—" replaced with real rating (e.g. 4.9)
+    - "—" replaced with real review count (e.g. 47)
+    - "Read on Google →" link points to your real GBP URL
+
+  ✓ Review section header on homepage
+    - Score, stars, count, link all update
+
+  ✓ Review card grid on homepage
+    - Static Nextdoor/Yelp/word-of-mouth fallback gets hidden
+    - Up to 6 real Google reviews render in its place
+    - Real author names, photos, dates, full review text
+
+  ✓ Footer Google rating badge on EVERY PAGE (all 50)
+    - Rating, count, link all update
+
+The "REPLACE_WITH_GBP_REVIEW_URL" markers used to exist throughout
+the site, but they were causing broken-link issues (browsers
+treated them as relative URLs). Those markers have been replaced
+with a working Google Maps search URL fallback:
+    https://www.google.com/maps/search/Utah+Boiler+Experts+Salt+Lake+City
+
+This URL works immediately — even before /reviews.php is wired up
+— and shows your business location on Google Maps where users can
+see reviews. Once /reviews.php is live, /js/reviews.js overwrites
+this href with the direct GBP review URL returned by Google.
+
+You do NOT need to manually replace any GBP URLs anywhere.
+
+===================================================================
+  WHAT IF I DON'T WANT LIVE REVIEWS RIGHT NOW?
+===================================================================
+
+If you don't fill in the Places API key, the system gracefully
+degrades:
+
+  - /reviews.php returns {"error":"not_configured"}
+  - /js/reviews.js silently leaves placeholders in place
+  - The static Nextdoor/Yelp/word-of-mouth cards stay visible
+  - The footer "—" stays a "—"
+  - No console errors, no broken UI
+
+So you can ship now with placeholders and wire reviews in later.
+
+===================================================================
+  ABOUT THE aggregateRating JSON-LD
+===================================================================
+
+The homepage <head> has a commented-out block:
+    "aggregateRating": { "ratingValue": "...", "reviewCount": "..." }
+
+This is INTENTIONALLY commented out. Google flags false review
+counts in structured data. Once your real rating + count are live
+(visible in the JS-populated UI), you can manually uncomment this
+block in index.html and paste in the same numbers from your GBP.
+
+Update it once when you launch real reviews, and again periodically
+as the count grows. This is the only piece that doesn't auto-update.
+
+===================================================================

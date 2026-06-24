@@ -1,0 +1,76 @@
+===================================================================
+  SNOW-MELT CONSULTATION FORM — GOOGLE APPS SCRIPT DEPLOY
+===================================================================
+
+The form handler code is in:
+  handlers/snow-melt-consultation.gs
+
+Follow these steps once, then send the /exec URL back so it can be
+wired into snow-melt-systems.html.
+
+-------------------------------------------------------------------
+  STEP 1 — Create the script
+-------------------------------------------------------------------
+
+  1. Go to https://script.google.com
+  2. New project
+  3. Delete the default myFunction() stub
+  4. Paste the full contents of snow-melt-consultation.gs
+  5. At the top, change:
+       NOTIFICATION_EMAIL = 'YOUR_EMAIL@EXAMPLE.COM'
+     to the inbox that should receive leads (e.g. your work email)
+
+  Optional — log submissions to a spreadsheet:
+    - Create a new Google Sheet
+    - Copy the Sheet ID from the URL (the long string between /d/ and /edit)
+    - Paste into SPREADSHEET_ID in the script
+
+-------------------------------------------------------------------
+  STEP 2 — Authorize
+-------------------------------------------------------------------
+
+  1. Select doPost in the function dropdown
+  2. Click Run (you'll get an error — that's fine, we're just authorizing)
+  3. Review permissions → Allow
+     (Needs: send email as you, optional spreadsheet access)
+
+-------------------------------------------------------------------
+  STEP 3 — Deploy as Web App
+-------------------------------------------------------------------
+
+  1. Deploy → New deployment
+  2. Type: Web app
+  3. Description: Snow-melt consultation form
+  4. Execute as: Me
+  5. Who has access: Anyone
+  6. Deploy
+  7. Copy the Web App URL — it ends in /exec
+     Example: https://script.google.com/macros/s/AKfycb.../exec
+
+-------------------------------------------------------------------
+  STEP 4 — Send the URL back
+-------------------------------------------------------------------
+
+  Reply with the /exec URL. It will be pasted into:
+    snow-melt-systems.html → form action="..."
+
+  After wiring, test by submitting the form. You should:
+    - Receive an email notification
+    - Land on the snow-melt page with a thank-you message
+
+-------------------------------------------------------------------
+  TROUBLESHOOTING
+-------------------------------------------------------------------
+
+Form submits but no email:
+  - Check spam folder
+  - Confirm NOTIFICATION_EMAIL is correct
+  - Re-deploy after editing the script (Deploy → Manage deployments → Edit → New version)
+
+Form shows "Could not submit":
+  - Make sure "Who has access" is set to Anyone, not Only myself
+
+Redirects but no email and no sheet row:
+  - NOTIFICATION_EMAIL still has the placeholder value
+
+===================================================================

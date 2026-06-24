@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 52" fill="none" role="img" aria-label="Saddle Up AI by Winters &amp; Winters">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10B981"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="lstreak" x1="4" y1="28" x2="44" y2="14" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10B981" stop-opacity="0"/>
+      <stop offset="0.4" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#34D399" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0 2) scale(1.083)">
+    <rect width="48" height="48" rx="11" fill="none"/>
+    <rect x="1" y="1" width="46" height="46" rx="10" stroke="url(#lg)" stroke-width="1.5" opacity="0.55"/>
+    <path d="M6 30 C14 18, 22 14, 38 10" stroke="url(#lstreak)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M28 11c6 1 11 6 12 13 1 6-2 12-8 15-2 1-5 2-8 2l-2 8-6-2 2-7c-4-2-7-5-8-9-1-5 1-10 6-14 3-3 8-5 12-6z" fill="#F8FAFC"/>
+    <path d="M33 18c2 2 3 5 2 8-1 2-3 4-5 4" stroke="#0B0B0F" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="35" cy="20" r="1.8" fill="#10B981"/>
+    <path d="M22 26c-1 4 0 7 3 10" stroke="#C6A75E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="62" y="24" font-family="Inter, system-ui, sans-serif" font-size="19" font-weight="800" fill="#F8FAFC" letter-spacing="-0.03em">Saddle Up </text>
+  <text x="62" y="24" font-family="Inter, system-ui, sans-serif" font-size="19" font-weight="800" fill="#10B981" letter-spacing="-0.03em">
+    <tspan x="158" y="24">AI</tspan>
+  </text>
+  <text x="62" y="40" font-family="Inter, system-ui, sans-serif" font-size="9.5" font-weight="600" fill="#C6A75E" letter-spacing="0.14em">BY WINTERS &amp; WINTERS</text>
+</svg>

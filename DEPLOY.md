@@ -49,6 +49,21 @@ https://github.com/wyatt-winters/BellsPlumbingUtah/actions
 
 ---
 
+## Saddle Up AI billboard (agentadvisers.com)
+
+The SEO billboard site lives in **`billboard/`** in this repo and deploys on its own workflow — it does **not** touch bellsplumbingutah.com.
+
+| Piece | Value |
+|-------|-------|
+| Folder | `billboard/` |
+| Workflow | `.github/workflows/deploy-billboard.yml` |
+| FTP user | `saddleupbillboard@bellsplumbingutah.com` |
+| Document root | `website_f9f5f795` → **agentadvisers.com** |
+
+See `billboard/BILLBOARD-DEPLOY.md` for details.
+
+---
+
 ## What gets uploaded (and what doesn't)
 
 **Uploaded:** HTML, CSS, JS, images, PHP, `.htaccess`, blog content — everything visitors need.

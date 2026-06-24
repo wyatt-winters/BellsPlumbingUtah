@@ -1,0 +1,30 @@
+403 fix — agentadvisers.com
+===========================
+
+ROOT CAUSE: Wrong FTP deploy path nested files under home1/ inside the site
+folder, AND/OR domain document root does not point to website_f9f5f795.
+
+FTP account: saddleupbillboard@bellsplumbingutah.com
+Chroot home: /home1/agentors/public_html/website_f9f5f795
+Deploy target: / only (never the full /home1/... path)
+
+ONE cPanel fix (do this first):
+-------------------------------
+Domains → agentadvisers.com → Document Root
+
+Must be EXACTLY:
+  /home1/agentors/public_html/website_f9f5f795
+
+File Manager cleanup:
+---------------------
+1. Open /home1/agentors/public_html/website_f9f5f795/
+2. index.html, css/, js/ must be at THIS level (not in a subfolder).
+3. DELETE any nested home1/ folder (bad FTP deploy artifact).
+4. Permissions: folders 755, files 644.
+
+If still 403 after document root is correct:
+--------------------------------------------
+Rename .htaccess to .htaccess.old and reload. HostGator sometimes blocks
+Options +MultiViews. The repo .htaccess has been updated for compatibility.
+
+GitHub deploy: FTP_SERVER_DIR must stay "/" (never the full /home1/... path).

@@ -1,0 +1,5 @@
+.DS_Store
+*.zip
+reviews-cache.json
+.env
+.env.*

@@ -1,0 +1,52 @@
+# Saddle Up AI billboard → agentadvisers.com (website_f9f5f795)
+
+name: Deploy billboard to agentadvisers.com
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'billboard/**'
+      - '.github/workflows/deploy-billboard.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-billboard
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy billboard via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 192.254.188.195
+          username: ${{ secrets.BILLBOARD_FTP_USERNAME }}
+          password: ${{ secrets.BILLBOARD_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          security: loose
+          timeout: 120000
+          local-dir: ./billboard/
+          server-dir: ./
+          state-name: .ftp-deploy-billboard-state.json
+          exclude: |
+            **/.git/**
+            **/.git*
+            **/.github/**
+            **/handlers/**
+            **/.DS_Store
+            **/*.zip
+            **/reviews-cache.json
+            **/.gitignore
+            **/README.txt
+            **/PLACEHOLDERS-TO-FILL.txt
+            **/GITHUB-DEPLOY.md
+            **/_archive-original/**
+            **/CPANEL-UPLOAD-FIX.txt
+            **/index-test.html
+            **/scripts/**

@@ -1,0 +1,193 @@
+{
+  "_comment_1": "Blog publishing schedule for Utah Boiler Experts.",
+  "_comment_2": "Set 'start_date' to whatever day you want post #1 (day_offset 0) to go live.",
+  "_comment_3": "Posts release one per day from that date. No cron job needed — blog/index.php does the math.",
+  "_comment_4": "To delay or skip releases, edit day_offset on individual posts. To re-release: just change start_date.",
+  "start_date": "2026-06-16",
+  "posts": [
+    {
+      "slug": "how-long-does-boiler-last-utah",
+      "title": "How Long Does a Boiler Last in Utah?",
+      "category": "Buying guide",
+      "excerpt": "Cast iron, mod-con, combi — the actual lifespans we see in Utah homes, plus the three biggest factors that shorten or extend them.",
+      "read_time": "5 min",
+      "day_offset": 0
+    },
+    {
+      "slug": "boiler-banging-noise-kettling",
+      "title": "What's That Banging Noise From My Boiler? (Kettling, Explained)",
+      "category": "Troubleshooting",
+      "excerpt": "If it sounds like there's a kettle on the stove inside your boiler, you're not crazy — and the fix is usually cheaper than you think.",
+      "read_time": "6 min",
+      "day_offset": 1
+    },
+    {
+      "slug": "why-is-my-boiler-leaking-water",
+      "title": "Why Is My Boiler Leaking Water? 6 Causes &amp; What Each One Costs to Fix",
+      "category": "Troubleshooting",
+      "excerpt": "From a $90 valve replacement to a $9,000 unit replacement — how to tell which leak you're looking at before you call.",
+      "read_time": "7 min",
+      "day_offset": 2
+    },
+    {
+      "slug": "hard-water-utah-boiler",
+      "title": "Hard Water and Your Boiler: Utah's Hidden Hydronic Killer",
+      "category": "Utah-specific",
+      "excerpt": "Why mod-con boilers age twice as fast in some Utah neighborhoods, and the $40 fix that saves you thousands.",
+      "read_time": "6 min",
+      "day_offset": 3
+    },
+    {
+      "slug": "snow-melt-driveway-cost-roi",
+      "title": "Snow-Melt Driveway Systems: Cost, ROI &amp; Is It Worth It in Utah?",
+      "category": "Snow-melt",
+      "excerpt": "The honest math on a heated driveway — install cost, gas bill impact, lifespan, and the homeowner profile this actually pays back for.",
+      "read_time": "8 min",
+      "day_offset": 4
+    },
+    {
+      "slug": "radiant-floor-heating-cost-utah",
+      "title": "Radiant Floor Heating Cost in Utah (2026 Guide)",
+      "category": "Cost guide",
+      "excerpt": "Per-square-foot pricing for slab-on-grade, staple-up, and panel installs — plus the cost variables that move the number.",
+      "read_time": "7 min",
+      "day_offset": 5
+    },
+    {
+      "slug": "combi-boiler-vs-tank-water-heater-utah",
+      "title": "Combi Boiler vs Tank Water Heater: Which Saves More in Utah?",
+      "category": "Comparison",
+      "excerpt": "The space, efficiency, and cost trade-offs — with a clear answer on which configuration we recommend for each Utah home type.",
+      "read_time": "7 min",
+      "day_offset": 6
+    },
+    {
+      "slug": "why-wont-my-boiler-turn-on",
+      "title": "Why Won't My Boiler Turn On? 7 Common Reasons (and How to Check)",
+      "category": "Troubleshooting",
+      "excerpt": "Before you call: a 10-minute self-diagnosis checklist that often saves the service call entirely.",
+      "read_time": "6 min",
+      "day_offset": 7
+    },
+    {
+      "slug": "how-to-bleed-radiator-safe-diy",
+      "title": "How to Bleed a Radiator (Safe DIY Guide)",
+      "category": "DIY",
+      "excerpt": "Cold tops, warm bottoms — how to release the trapped air in 10 minutes without flooding your floors.",
+      "read_time": "5 min",
+      "day_offset": 8
+    },
+    {
+      "slug": "mod-con-boilers-explained",
+      "title": "Mod-Con Boilers Explained: Why Park City Loves Them",
+      "category": "Educational",
+      "excerpt": "What 'modulating-condensing' actually means in plain English, and why it matters more in high-altitude homes.",
+      "read_time": "6 min",
+      "day_offset": 9
+    },
+    {
+      "slug": "prepare-boiler-for-utah-winter",
+      "title": "How to Prepare Your Boiler for Utah Winter (Step-by-Step)",
+      "category": "Seasonal",
+      "excerpt": "The pre-frost checklist that prevents the most common no-heat calls — most steps you can do yourself in an hour.",
+      "read_time": "7 min",
+      "day_offset": 10
+    },
+    {
+      "slug": "what-size-boiler-do-i-need-utah",
+      "title": "What Size Boiler Do I Need? Utah Homeowner's Sizing Guide",
+      "category": "Buying guide",
+      "excerpt": "How heat-loss calculations actually work, why your contractor probably oversized your last boiler, and what to look for in a real quote.",
+      "read_time": "8 min",
+      "day_offset": 11
+    },
+    {
+      "slug": "annual-boiler-maintenance-diy-pro",
+      "title": "Annual Boiler Maintenance: What You Can DIY vs. What Needs a Pro",
+      "category": "Maintenance",
+      "excerpt": "A clear split — five things you should do yourself every fall, and four things that need a tech with a combustion analyzer.",
+      "read_time": "6 min",
+      "day_offset": 12
+    },
+    {
+      "slug": "tankless-water-heater-worth-it-utah",
+      "title": "Tankless Water Heaters: Worth the Hype in Utah?",
+      "category": "Water heater",
+      "excerpt": "The endless hot water claim is half-true. Here's the full picture — and the two scenarios where we actively recommend against tankless.",
+      "read_time": "7 min",
+      "day_offset": 13
+    },
+    {
+      "slug": "cut-utah-heating-bill-without-thermostat",
+      "title": "How to Cut Your Utah Heating Bill (Without Touching the Thermostat)",
+      "category": "Efficiency",
+      "excerpt": "Eight changes that drop your gas bill 15-30% — most are free, the rest pay back in under three winters.",
+      "read_time": "7 min",
+      "day_offset": 14
+    },
+    {
+      "slug": "heated-bathroom-floors-cost-worth-it",
+      "title": "Heated Bathroom Floors: Cost, Install, Worth It?",
+      "category": "Radiant",
+      "excerpt": "Per-square-foot pricing, electric vs hydronic for small areas, and the one scenario where heated floors are a bad investment.",
+      "read_time": "6 min",
+      "day_offset": 15
+    },
+    {
+      "slug": "radiant-heat-vs-forced-air-honest-comparison",
+      "title": "Radiant Heat vs Forced Air: The Honest Comparison",
+      "category": "Comparison",
+      "excerpt": "Comfort, efficiency, cost, allergen, install complexity — six categories, head-to-head, no fence-sitting.",
+      "read_time": "8 min",
+      "day_offset": 16
+    },
+    {
+      "slug": "when-to-schedule-boiler-service-utah",
+      "title": "When to Schedule Boiler Service in Utah (Don't Wait for First Frost)",
+      "category": "Timing",
+      "excerpt": "Why September is the smart move, October is fine, November is dicey, and December is just paying emergency rates.",
+      "read_time": "4 min",
+      "day_offset": 17
+    },
+    {
+      "slug": "whole-house-hydronic-heating-utah-home",
+      "title": "Whole-House Hydronic Heating: Right for Your Utah Home?",
+      "category": "System overview",
+      "excerpt": "What a full hydronic conversion involves, what it costs, and the home characteristics that make it the obvious move.",
+      "read_time": "9 min",
+      "day_offset": 18
+    },
+    {
+      "slug": "boiler-died-in-january-what-to-do",
+      "title": "Your Boiler Died in January — What to Do Right Now",
+      "category": "Emergency",
+      "excerpt": "Cold house, no heat, kids inside. The right order of operations for the next 60 minutes — and how to avoid getting gouged.",
+      "read_time": "5 min",
+      "day_offset": 19
+    },
+    {
+      "slug": "boiler-pressure-too-high",
+      "title": "Boiler Pressure Too High? What It Means &amp; How to Fix It",
+      "category": "Troubleshooting",
+      "excerpt": "Pressure climbing into the red zone is almost always one of four problems. Here's how to tell which is which — and when to call same-day.",
+      "read_time": "7 min",
+      "day_offset": 20
+    },
+    {
+      "slug": "signs-your-boiler-needs-replacement",
+      "title": "9 Signs Your Boiler Needs Replacement",
+      "category": "Buying guide",
+      "excerpt": "The framework we use when homeowners ask 'should I just replace it?' — nine honest signs your boiler is done.",
+      "read_time": "8 min",
+      "day_offset": 21
+    },
+    {
+      "slug": "boiler-repair-cost-utah",
+      "title": "Boiler Repair Cost in Utah (2026): Real Pricing, By the Job",
+      "category": "Cost guide",
+      "excerpt": "What boiler repair actually costs in Utah in 2026 — by repair type, brand, and emergency vs scheduled. Real numbers from the field.",
+      "read_time": "9 min",
+      "day_offset": 22
+    }
+  ]
+}

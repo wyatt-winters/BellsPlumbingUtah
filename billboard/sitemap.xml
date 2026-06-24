@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- HOMEPAGE -->
+  <url><loc>https://utahboilerexperts.com/</loc><lastmod>2026-06-16</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+
+  <!-- WAVE 1 — PILLAR SERVICE PAGES -->
+  <url><loc>https://utahboilerexperts.com/boiler-repair</loc><lastmod>2026-06-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://utahboilerexperts.com/boiler-replacement</loc><lastmod>2026-06-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://utahboilerexperts.com/radiant-floor-heating</loc><lastmod>2026-06-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://utahboilerexperts.com/snow-melt-systems</loc><lastmod>2026-06-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- WAVE 1 — CONVERSION / TRUST / HUB -->
+  <url><loc>https://utahboilerexperts.com/emergency-boiler-repair</loc><lastmod>2026-06-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://utahboilerexperts.com/the-other-buddy-plumbing</loc><lastmod>2026-06-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://utahboilerexperts.com/review</loc><lastmod>2026-06-18</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://utahboilerexperts.com/about</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-areas</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- WAVE 1 — CITY PAGES -->
+  <url><loc>https://utahboilerexperts.com/service-area/park-city</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/salt-lake-city</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- WAVE 2 — SERVICE CLUSTER PAGES -->
+  <url><loc>https://utahboilerexperts.com/boiler-maintenance</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://utahboilerexperts.com/boiler-installation</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://utahboilerexperts.com/radiant-floor-heating-installation</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://utahboilerexperts.com/combi-boilers</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/condensing-boilers</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- WAVE 2 — CITY PAGES -->
+  <url><loc>https://utahboilerexperts.com/service-area/heber-city</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/cottonwood-heights</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/holladay</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/sandy</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/draper</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/lehi</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/south-jordan</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/west-jordan</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/murray</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/millcreek</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/riverton</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/herriman</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/midway</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/american-fork</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/pleasant-grove</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/orem</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/provo</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/lindon</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/highland</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/bountiful</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/farmington</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/kaysville</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/layton</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/service-area/ogden</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- WAVE 2 — BRAND PAGES -->
+  <url><loc>https://utahboilerexperts.com/brands/weil-mclain-boiler-repair</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/brands/lochinvar-boiler-repair</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- WAVE 3 — SERVICE CLUSTER PAGES -->
+  <url><loc>https://utahboilerexperts.com/water-heater-repair</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://utahboilerexperts.com/radiant-floor-heating-repair</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- WAVE 3 — CITY PAGES (all 26 cities — see service-areas hub) -->
+
+  <!-- WAVE 3 — BRAND PAGES -->
+  <url><loc>https://utahboilerexperts.com/brands/navien-boiler-repair</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://utahboilerexperts.com/brands/burnham-boiler-repair</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- WAVE 3 — BLOG (3 posts drip after main 20-post schedule) -->
+
+  <!-- BLOG HUB + 23 POSTS (released incrementally per posts.json) -->
+  <url><loc>https://utahboilerexperts.com/blog/</loc><lastmod>2026-06-16</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/how-long-does-boiler-last-utah</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/boiler-banging-noise-kettling</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/why-is-my-boiler-leaking-water</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/hard-water-utah-boiler</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/snow-melt-driveway-cost-roi</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/radiant-floor-heating-cost-utah</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/combi-boiler-vs-tank-water-heater-utah</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/why-wont-my-boiler-turn-on</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/how-to-bleed-radiator-safe-diy</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/mod-con-boilers-explained</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/prepare-boiler-for-utah-winter</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/what-size-boiler-do-i-need-utah</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/annual-boiler-maintenance-diy-pro</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/tankless-water-heater-worth-it-utah</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/cut-utah-heating-bill-without-thermostat</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/heated-bathroom-floors-cost-worth-it</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/radiant-heat-vs-forced-air-honest-comparison</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/when-to-schedule-boiler-service-utah</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/whole-house-hydronic-heating-utah-home</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/boiler-died-in-january-what-to-do</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/boiler-pressure-too-high</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/signs-your-boiler-needs-replacement</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://utahboilerexperts.com/blog/boiler-repair-cost-utah</loc><lastmod>2026-06-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+</urlset>

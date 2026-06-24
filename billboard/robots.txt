@@ -1,0 +1,50 @@
+# Utah Boiler Experts robots.txt
+# https://utahboilerexperts.com
+
+User-agent: *
+Allow: /
+
+# Block any admin or build paths if added later
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /*.zip$
+Disallow: /reviews.php
+
+# AI crawlers — public content allowed; same blocks as above
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /reviews.php
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /reviews.php
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /reviews.php
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /reviews.php
+
+User-agent: Bytespider
+Allow: /
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /reviews.php
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /reviews.php
+
+Sitemap: https://utahboilerexperts.com/sitemap.xml

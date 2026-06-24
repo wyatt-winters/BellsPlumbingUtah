@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "name": "Utah Boiler Experts",
+  "description": "Utah hydronic heating company offering boiler repair, radiant floor heating, snow-melt systems, and water heater service across the Wasatch Front.",
+  "url": "https://utahboilerexperts.com",
+  "capabilities": [
+    "search",
+    "contact",
+    "quote",
+    "emergency-service"
+  ],
+  "contact": "hello@utahboilerexperts.com",
+  "telephone": "+1-801-685-3976",
+  "llms_txt": "https://utahboilerexperts.com/llms.txt",
+  "sitemap": "https://utahboilerexperts.com/sitemap.xml",
+  "service_area": [
+    "Salt Lake County",
+    "Summit County",
+    "Wasatch County",
+    "Davis County",
+    "Weber County",
+    "Utah"
+  ],
+  "languages": ["en"]
+}
