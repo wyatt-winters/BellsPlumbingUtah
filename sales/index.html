@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saddle Up Lead Desk — Lead scoring for home service websites</title>
+  <meta name="description" content="Replace your contact form with a 3-step lead qualifier. Works on WordPress and static sites. Logs to Google Sheets. $39/mo — cancel anytime.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #10B981;
+      --primary-dark: #059669;
+      --primary-soft: rgba(16, 185, 129, 0.12);
+      --gold: #C6A75E;
+      --gold-soft: rgba(198, 167, 94, 0.15);
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --bg: #0B0B0F;
+      --bg-elevated: #0F172A;
+      --card: rgba(15, 23, 42, 0.85);
+      --border: rgba(148, 163, 184, 0.16);
+      --radius: 16px;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      --max: 1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .text-accent { color: var(--primary); }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 11, 15, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--primary); }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav__links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav__links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.85rem 1.35rem;
+      border-radius: 999px;
+      border: none;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn--primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.28);
+    }
+
+    .btn--primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn--ghost {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid transparent;
+    }
+
+    .btn--ghost:hover {
+      background: #F8FAFC;
+      transform: translateY(-1px);
+    }
+
+    .btn--block { width: 100%; }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 3.5rem 0 4rem;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16, 185, 129, 0.14), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero > * { position: relative; }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      margin: 0 0 1rem;
+      font-weight: 800;
+    }
+
+    .hero__lead {
+      font-size: 1.12rem;
+      color: var(--muted);
+      margin: 0 0 1.5rem;
+      max-width: 34rem;
+    }
+
+    .hero__cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero__proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero__proof strong { color: var(--text); display: block; font-size: 1rem; }
+
+    /* Mock widget */
+    .mock {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .mock__header {
+      padding: 1.25rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mock__badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+    }
+
+    .mock__title { font-size: 1.2rem; font-weight: 700; margin: 0 0 0.25rem; }
+    .mock__sub { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+    .mock__body { padding: 1.25rem 1.5rem 1.5rem; }
+
+    .mock__steps {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .mock__step {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.2);
+    }
+
+    .mock__step.is-on { background: var(--primary); }
+
+    .mock__option {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 0.55rem;
+      font-size: 0.88rem;
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .mock__option:hover:not(.is-selected) {
+      border-color: rgba(16, 185, 129, 0.45);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .mock__option.is-selected {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .mock__dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .mock__option.is-selected .mock__dot {
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: inset 0 0 0 2px #fff;
+    }
+
+    .mock__score {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      color: #6EE7B7;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .mock__score.is-hidden { display: none; }
+
+    .mock__score--emergency {
+      background: rgba(248, 113, 113, 0.12);
+      color: #FCA5A5;
+      border-color: rgba(248, 113, 113, 0.25);
+    }
+
+    .mock__score--standard {
+      background: rgba(148, 163, 184, 0.12);
+      color: #CBD5E1;
+      border-color: rgba(148, 163, 184, 0.2);
+    }
+
+    .mock__fields {
+      display: grid;
+      gap: 0.55rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .mock__field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .mock__field input {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(11, 11, 15, 0.5);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.88rem;
+    }
+
+    .mock__field input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+
+    .mock__btn {
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+
+    .mock__btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .mock__btn:not(:disabled):hover {
+      background: var(--primary-dark);
+    }
+
+    .mock__panel--fade {
+      animation: demoFade 0.22s ease;
+    }
+
+    @keyframes demoFade {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    section { padding: 4rem 0; }
+
+    .section--elevated {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin: 0 0 0.75rem;
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .section-head p { color: var(--muted); margin: 0; font-size: 1.05rem; }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .problem-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+    }
+
+    .problem-card__icon { font-size: 1.5rem; margin-bottom: 0.65rem; }
+    .problem-card h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+    .problem-card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+    }
+
+    .feature h3 { margin: 0 0 0.35rem; font-size: 0.98rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .flow-step {
+      text-align: center;
+      padding: 1.25rem 1rem;
+    }
+
+    .flow-step__num {
+      width: 2.25rem;
+      height: 2.25rem;
+      margin: 0 auto 0.75rem;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+
+    .flow-step h3 { margin: 0 0 0.35rem; font-size: 0.95rem; }
+    .flow-step p { margin: 0; color: var(--muted); font-size: 0.85rem; }
+
+    .trades {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.65rem;
+    }
+
+    .trade-pill {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* Pricing */
+    .pricing-section {
+      background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
+      color: var(--text);
+      padding: 4.5rem 0;
+    }
+
+    .pricing-section .section-head h2 { color: var(--text); }
+    .pricing-section .section-head p { color: var(--muted); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .price-card.is-featured {
+      background: #F8FAFC;
+      color: #0F172A;
+      border: 2px solid var(--primary);
+      box-shadow: 0 24px 60px rgba(16, 185, 129, 0.15);
+    }
+
+    .price-card__badge {
+      position: absolute;
+      top: -0.65rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .price-card h3 { margin: 0 0 0.35rem; font-size: 1.1rem; }
+    .price-card .amount { font-size: 2.75rem; font-weight: 700; margin: 0.5rem 0 0.15rem; }
+    .price-card .note { font-size: 0.88rem; opacity: 0.72; margin-bottom: 1.25rem; }
+    .price-card.is-featured .note { color: var(--muted); opacity: 1; }
+
+    .price-card ul {
+      margin: 0 0 1.5rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .price-card li {
+      padding: 0.45rem 0 0.45rem 1.4rem;
+      position: relative;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .price-card.is-featured li { border-color: rgba(15, 23, 42, 0.1); color: #475569; }
+    .price-card li:last-child { border-bottom: none; }
+
+    .price-card li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .price-card .btn--primary { box-shadow: none; }
+    .price-card:not(.is-featured) .btn--primary { background: var(--primary); color: #fff; }
+    .price-card:not(.is-featured) .btn--primary:hover { background: var(--primary-dark); }
+
+    .guarantee {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* FAQ */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 0.65rem;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 1.1rem 1.25rem;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text);
+    }
+
+    .faq-q span { font-size: 1.25rem; color: var(--primary); transition: transform 0.2s; }
+    .faq-item.is-open .faq-q span { transform: rotate(45deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 1.25rem 1.1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .faq-item.is-open .faq-a { display: block; }
+
+    /* CTA band */
+    .cta-band {
+      text-align: center;
+      padding: 4rem 1.25rem;
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      margin: 0 0 0.75rem;
+    }
+
+    .cta-band p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    footer a { color: var(--primary); }
+
+    /* Mobile sticky CTA */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.75rem 1rem;
+      background: rgba(11, 11, 15, 0.96);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      z-index: 60;
+    }
+
+    @media (max-width: 900px) {
+      .hero__grid { grid-template-columns: 1fr; }
+      .mock { max-width: 420px; margin: 0 auto; }
+      .problem-grid, .features-grid { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .nav__links a:not(.btn) { display: none; }
+      .sticky-cta { display: block; }
+      body { padding-bottom: 4.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="logo" href="https://bellsplumbingutah.com">Saddle Up <span>Lead Desk</span></a>
+      <div class="nav__links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#" class="btn btn--primary" id="nav-buy">Get Lead Desk</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero wrap">
+    <div class="hero__grid">
+      <div>
+        <div class="eyebrow">Built for home service pros</div>
+        <h1>Your contact form can't tell a <span class="text-accent">flood from a quote</span>.</h1>
+        <p class="hero__lead" id="hero-tagline">
+          Lead Desk qualifies every website visitor in 3 steps, scores urgency automatically,
+          and logs leads to Google Sheets — on WordPress or any static site. <strong>$39/mo.</strong> Cancel anytime.
+        </p>
+        <div class="hero__cta">
+          <a href="#pricing" class="btn btn--primary">Get Lead Desk →</a>
+          <a href="#" class="btn btn--ghost" id="demo-link">See live demo</a>
+        </div>
+        <div class="hero__proof">
+          <div><strong>15 min</strong> to install</div>
+          <div><strong>Site key</strong> kill switch</div>
+          <div><strong>5 trades</strong> built in</div>
+          <div><strong>1 job</strong> pays for it</div>
+        </div>
+      </div>
+
+      <div class="mock" id="hero-demo" role="region" aria-label="Interactive Lead Desk preview">
+        <div class="mock__header">
+          <div class="mock__badge">HVAC Lead Desk</div>
+          <p class="mock__title">How can we help with your HVAC system?</p>
+          <p class="mock__sub">Answer a few quick questions so we can prioritize your request.</p>
+        </div>
+        <div class="mock__body">
+          <div class="mock__steps" id="demo-steps">
+            <div class="mock__step is-on" data-step="1"></div>
+            <div class="mock__step" data-step="2"></div>
+            <div class="mock__step" data-step="3"></div>
+          </div>
+          <div class="mock__panel" id="demo-panel"></div>
+          <div class="mock__score is-hidden" id="demo-score"></div>
+          <button type="button" class="mock__btn" id="demo-action" disabled>Next →</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Monday morning shouldn't be a <span class="text-accent">surprise</span></h2>
+        <p>Most contractor sites treat every submit the same. You lose emergency jobs while sorting junk.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="problem-card__icon">🔥</div>
+          <h3>No urgency signal</h3>
+          <p>A "no heat" call at 11pm looks identical to someone browsing for a quote next spring.</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__icon">📋</div>
+          <h3>Generic contact forms</h3>
+          <p>Name, email, message. Zero trade context. Your office calls everyone in the order it arrived.</p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__icon">💸</div>
+          <h3>Another monthly tool</h3>
+          <p>Contractors don't want a $99/mo form builder. They want leads in a spreadsheet they already use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section--elevated">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Everything you need. <span class="text-accent">Nothing you don't.</span></h2>
+        <p>Ship it on the next client site tonight. No backend. No API keys. No sales call.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature"><h3>WordPress plugin</h3><p>Shortcode, Gutenberg block, local lead inbox, full admin settings.</p></div>
+        <div class="feature"><h3>Static site embed</h3><p>Upload one folder. Works on HostGator, Netlify, Vercel, plain HTML.</p></div>
+        <div class="feature"><h3>Google Sheets CRM</h3><p>Every lead = new row with score, urgency, trade, and source page.</p></div>
+        <div class="feature"><h3>Lead scoring</h3><p>Emergency → High → Standard → Low. Know who to call first.</p></div>
+        <div class="feature"><h3>After-hours mode</h3><p>Capture leads when you're closed. Message sets expectations.</p></div>
+        <div class="feature"><h3>Your branding</h3><p>Colors, button text, business name, custom headline per site.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How it <span class="text-accent">works</span></h2>
+        <p>Your customer fills it out. Your sheet updates. You call the emergencies first.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step__num">1</div>
+          <h3>Pick the issue</h3>
+          <p>Trade-specific options — leak, no heat, storm damage, etc.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">2</div>
+          <h3>Set urgency</h3>
+          <p>Emergency, today, this week, or just planning.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">3</div>
+          <h3>Leave contact info</h3>
+          <p>Name, phone, ZIP. Optional email and notes.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">4</div>
+          <h3>Row hits your sheet</h3>
+          <p>Scored, timestamped, ready for your office or CSR.</p>
+        </div>
+      </div>
+      <div class="trades" style="margin-top:2rem">
+        <span class="trade-pill">HVAC</span>
+        <span class="trade-pill">Plumbing</span>
+        <span class="trade-pill">Electrical</span>
+        <span class="trade-pill">Roofing</span>
+        <span class="trade-pill">General</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Simple monthly <span class="text-accent">pricing</span></h2>
+        <p>Cancel anytime. Widget turns off automatically if payment stops.</p>
+      </div>
+      <div class="pricing-grid" id="pricing-grid">
+        <!-- populated by JS -->
+      </div>
+      <p class="guarantee">Secure checkout via Stripe · Instant site key · Cancel anytime in billing portal</p>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Self-serve <span class="text-accent">install</span></h2>
+        <p>No onboarding call required. Docs included. Most buyers are live the same day.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step__num">①</div>
+          <h3>Buy & download</h3>
+          <p>Stripe checkout → instant zip bundle.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">②</div>
+          <h3>Connect Google Sheet</h3>
+          <p>Paste Apps Script. Deploy. Copy URL. 5 minutes.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">③</div>
+          <h3>Embed on site</h3>
+          <p>WordPress plugin or static HTML snippet.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">④</div>
+          <h3>Test & go live</h3>
+          <p>Submit a lead. See the row. You're done.</p>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:2rem">
+        <a href="onboarding-demo.html" class="btn btn--ghost">Try the onboarding demo →</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2><span class="text-accent">Questions</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" type="button">Do I need a developer?<span>+</span></button>
+          <div class="faq-a">No. If you can upload a plugin or paste HTML into a page, you can install Lead Desk. Step-by-step docs are included.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Is there a monthly fee?<span>+</span></button>
+          <div class="faq-a">$39/mo for Contractor (1 site) or $79/mo for Agency (unlimited client sites). Cancel anytime in the Stripe billing portal. If payment fails, the widget stops automatically.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">WordPress only?<span>+</span></button>
+          <div class="faq-a">No. You get both a WordPress plugin and a static HTML embed that works on any host.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Where do leads go?<span>+</span></button>
+          <div class="faq-a">Google Sheets by default — one new row per lead with score, urgency, phone, trade, and source URL. WordPress also stores leads in the admin.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">What happens if I cancel?<span>+</span></button>
+          <div class="faq-a">Your site key is checked against our license server. If your subscription is canceled or past due, the form is replaced with a renewal message. Leads stop until you reactivate.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Can I use it on client sites?<span>+</span></button>
+          <div class="faq-a">Agency tier covers unlimited client deployments. Contractor tier is for a single site.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">What if I need help?<span>+</span></button>
+          <div class="faq-a">Email support is included. Docs cover 95% of installs. Optional DFY setup available after purchase.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <h2>One extra emergency job <span class="text-accent">pays for this</span>.</h2>
+    <p>Stop losing after-hours leads to a form that treats every visitor the same.</p>
+    <a href="#pricing" class="btn btn--primary">Get Lead Desk →</a>
+  </section>
+
+  <footer>
+    <p>Saddle Up Lead Desk · Built by <a href="https://saddleupai.com">Saddle Up AI</a></p>
+    <p>Questions? <a href="#" id="footer-support">hello@saddleupai.com</a></p>
+  </footer>
+
+  <div class="sticky-cta">
+    <a href="#pricing" class="btn btn--primary btn--block">Get Lead Desk →</a>
+  </div>
+
+  <script>
+    (function () {
+      var fallback = {
+        tagline: 'Turn website visitors into scored, prioritized leads — without a monthly CRM bill.',
+        demoUrl: '/sales/lead-desk/demo.html',
+        supportEmail: 'hello@saddleupai.com',
+        tiers: {
+          contractor: {
+            name: 'Contractor',
+            priceDisplay: '$39',
+            priceInterval: '/mo',
+            priceNote: '1 site · Cancel anytime',
+            stripePaymentLink: '#',
+            highlights: ['WordPress + static embed', 'Google Sheets connector', 'All 5 trade templates', 'Lead scoring', 'Email support']
+          },
+          agency: {
+            name: 'Agency',
+            badge: 'Most popular',
+            priceDisplay: '$79',
+            priceInterval: '/mo',
+            priceNote: 'Unlimited client sites · Cancel anytime',
+            stripePaymentLink: '#',
+            featured: true,
+            highlights: ['Everything in Contractor', 'Unlimited client sites', 'White-label ready', 'Priority support', 'Agency playbook']
+          }
+        }
+      };
+
+      function renderPricing(cfg) {
+        var grid = document.getElementById('pricing-grid');
+        var tiers = cfg.tiers || fallback.tiers;
+        var order = ['contractor', 'agency'];
+        grid.innerHTML = order.map(function (key) {
+          var tier = tiers[key];
+          if (!tier) return '';
+          var featured = tier.featured ? ' is-featured' : '';
+          var badge = tier.badge ? '<div class="price-card__badge">' + tier.badge + '</div>' : '';
+          var items = (tier.highlights || []).map(function (h) {
+            return '<li>' + h + '</li>';
+          }).join('');
+          var link = tier.stripePaymentLink || '#';
+          var warn = link.indexOf('YOUR_') > -1 || link === '#';
+
+          return (
+            '<div class="price-card' + featured + '">' +
+              badge +
+              '<h3>' + tier.name + '</h3>' +
+              '<div class="amount">' + tier.priceDisplay + '<span style="font-size:1rem;font-weight:600;opacity:0.7">' + (tier.priceInterval || '/mo') + '</span></div>' +
+              '<p class="note">' + tier.priceNote + '</p>' +
+              '<ul>' + items + '</ul>' +
+              '<a href="' + link + '" class="btn btn--primary btn--block buy-tier"' +
+                (warn ? '' : ' target="_blank" rel="noopener"') +
+                ' data-tier="' + key + '">Buy ' + tier.name + ' →</a>' +
+            '</div>'
+          );
+        }).join('');
+
+        grid.querySelectorAll('.buy-tier').forEach(function (btn) {
+          var href = btn.getAttribute('href');
+          if (href.indexOf('YOUR_') > -1 || href === '#') {
+            btn.addEventListener('click', function (e) {
+              e.preventDefault();
+              alert('Add Stripe Payment Links in package/stripe.config.json');
+            });
+          }
+        });
+
+        var agencyLink = tiers.agency && tiers.agency.stripePaymentLink;
+        if (agencyLink && agencyLink.indexOf('YOUR_') === -1 && agencyLink !== '#') {
+          document.getElementById('nav-buy').href = agencyLink;
+          document.getElementById('nav-buy').setAttribute('target', '_blank');
+        }
+      }
+
+      function applyConfig(cfg) {
+        document.getElementById('hero-tagline').textContent = cfg.tagline || fallback.tagline;
+        document.getElementById('demo-link').href = cfg.demoUrl || fallback.demoUrl;
+        var email = cfg.supportEmail || fallback.supportEmail;
+        document.getElementById('footer-support').href = 'mailto:' + email;
+        document.getElementById('footer-support').textContent = email;
+        renderPricing(cfg);
+      }
+
+      document.querySelectorAll('.faq-q').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.closest('.faq-item');
+          var open = item.classList.contains('is-open');
+          document.querySelectorAll('.faq-item').forEach(function (el) {
+            el.classList.remove('is-open');
+          });
+          if (!open) item.classList.add('is-open');
+        });
+      });
+
+      function initHeroDemo() {
+        var panel = document.getElementById('demo-panel');
+        var scoreEl = document.getElementById('demo-score');
+        var actionBtn = document.getElementById('demo-action');
+        var stepEls = document.querySelectorAll('#demo-steps .mock__step');
+        if (!panel || !actionBtn) return;
+
+        var ISSUES = [
+          { value: 'no_ac', label: 'No AC / not cooling' },
+          { value: 'no_heat', label: 'No heat' },
+          { value: 'maintenance', label: 'Maintenance or tune-up' },
+          { value: 'quote', label: 'New system quote' }
+        ];
+
+        var URGENCIES = [
+          { value: 'emergency', label: 'Emergency — need help now' },
+          { value: 'today', label: 'Today if possible' },
+          { value: 'this_week', label: 'This week' },
+          { value: 'planning', label: 'Just planning / getting quotes' }
+        ];
+
+        var state = {
+          step: 1,
+          issue: '',
+          urgency: '',
+          submitted: false
+        };
+
+        function scoreLead(urgency, issueType) {
+          var score = 30;
+          var urgencyScores = { emergency: 50, today: 35, this_week: 20, planning: 10 };
+          var issueScores = {
+            no_heat: 40,
+            no_ac: 40,
+            maintenance: 10,
+            quote: 15
+          };
+
+          score += urgencyScores[urgency] || 15;
+          score += issueScores[issueType] || 15;
+          score = Math.min(100, score);
+
+          var label = 'Low Priority';
+          if (score >= 80) label = 'Emergency';
+          else if (score >= 55) label = 'High Priority';
+          else if (score >= 35) label = 'Standard';
+
+          return { value: score, label: label };
+        }
+
+        function updateSteps() {
+          stepEls.forEach(function (el, index) {
+            el.classList.toggle('is-on', index < state.step);
+          });
+        }
+
+        function renderOptions(options, selected, field) {
+          return options.map(function (opt) {
+            var selectedClass = opt.value === selected ? ' is-selected' : '';
+            return (
+              '<button type="button" class="mock__option' + selectedClass + '" data-field="' + field + '" data-value="' + opt.value + '">' +
+                '<div class="mock__dot"></div>' + opt.label +
+              '</button>'
+            );
+          }).join('');
+        }
+
+        function renderPanel() {
+          panel.classList.remove('mock__panel--fade');
+          void panel.offsetWidth;
+          panel.classList.add('mock__panel--fade');
+
+          if (state.submitted) {
+            panel.innerHTML = '<p style="margin:0;font-size:0.88rem;color:var(--muted)">Lead captured — your office would see this in Google Sheets instantly.</p>';
+            actionBtn.textContent = 'Try again';
+            actionBtn.disabled = false;
+            return;
+          }
+
+          if (state.step === 1) {
+            panel.innerHTML = renderOptions(ISSUES, state.issue, 'issue');
+            actionBtn.textContent = 'Next →';
+            actionBtn.disabled = !state.issue;
+          } else if (state.step === 2) {
+            panel.innerHTML = renderOptions(URGENCIES, state.urgency, 'urgency');
+            actionBtn.textContent = 'Next →';
+            actionBtn.disabled = !state.urgency;
+          } else {
+            panel.innerHTML =
+              '<div class="mock__fields">' +
+                '<div class="mock__field"><label for="demo-name">Name</label><input id="demo-name" type="text" placeholder="Jane Smith" autocomplete="name"></div>' +
+                '<div class="mock__field"><label for="demo-phone">Phone</label><input id="demo-phone" type="tel" placeholder="(555) 555-0100" autocomplete="tel"></div>' +
+              '</div>';
+            actionBtn.textContent = 'Submit lead →';
+            actionBtn.disabled = false;
+          }
+
+          panel.querySelectorAll('.mock__option').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              var field = btn.getAttribute('data-field');
+              var value = btn.getAttribute('data-value');
+              state[field] = value;
+              renderPanel();
+            });
+          });
+        }
+
+        function showScore(result) {
+          scoreEl.className = 'mock__score';
+          if (result.label === 'Emergency') scoreEl.classList.add('mock__score--emergency');
+          else if (result.label === 'Standard' || result.label === 'Low Priority') scoreEl.classList.add('mock__score--standard');
+          scoreEl.textContent = '→ Scored: ' + result.label + ' (' + result.value + ') · routed to your Google Sheet';
+        }
+
+        function resetDemo() {
+          state.step = 1;
+          state.issue = '';
+          state.urgency = '';
+          state.submitted = false;
+          scoreEl.className = 'mock__score is-hidden';
+          scoreEl.textContent = '';
+          updateSteps();
+          renderPanel();
+        }
+
+        actionBtn.addEventListener('click', function () {
+          if (state.submitted) {
+            resetDemo();
+            return;
+          }
+
+          if (state.step === 1) {
+            if (!state.issue) return;
+            state.step = 2;
+            updateSteps();
+            renderPanel();
+            return;
+          }
+
+          if (state.step === 2) {
+            if (!state.urgency) return;
+            state.step = 3;
+            updateSteps();
+            renderPanel();
+            return;
+          }
+
+          var name = document.getElementById('demo-name');
+          var phone = document.getElementById('demo-phone');
+          if (name && !name.value.trim()) {
+            name.focus();
+            return;
+          }
+          if (phone && !phone.value.trim()) {
+            phone.focus();
+            return;
+          }
+
+          var result = scoreLead(state.urgency, state.issue);
+          showScore(result);
+          state.submitted = true;
+          updateSteps();
+          renderPanel();
+        });
+
+        updateSteps();
+        renderPanel();
+      }
+
+      initHeroDemo();
+
+      fetch('./stripe.config.json')
+        .then(function (r) { return r.json(); })
+        .then(applyConfig)
+        .catch(function () { applyConfig(fallback); });
+    })();
+  </script>
+</body>
+</html>

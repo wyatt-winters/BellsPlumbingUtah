@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Desk Embed Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f4f6f8;
+      color: #1a2332;
+    }
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+    .hero {
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      margin: 0 0 0.5rem;
+    }
+    .hero p {
+      margin: 0;
+      color: #5c6773;
+      line-height: 1.6;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .panel {
+      background: #fff;
+      border: 1px solid rgba(26, 35, 50, 0.12);
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    .panel h2 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+    pre {
+      background: #111827;
+      color: #e5e7eb;
+      padding: 1rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    @media (max-width: 800px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero">
+      <h1>Saddle Up Lead Desk — Static Site Demo</h1>
+      <p>Upload the <code>lead-desk/</code> folder to any static host, paste the snippet, and connect with your site key.</p>
+    </div>
+
+    <div class="layout">
+      <div>
+        <div
+          data-saddle-up-lead-desk
+          data-google-sheet-url="https://script.google.com/macros/s/YOUR_ID/exec"
+          data-trade="hvac"
+          data-business-name="Demo HVAC Co."
+          data-primary-color="#c45a11"
+        ></div>
+      </div>
+
+      <div class="panel">
+        <h2>Embed snippet</h2>
+        <pre>&lt;!-- 1. Upload lead-desk/ folder to your site --&gt;
+&lt;!-- 2. Paste before &lt;/body&gt; --&gt;
+
+&lt;div
+  data-saddle-up-lead-desk
+  data-google-sheet-url="https://script.google.com/macros/s/YOUR_ID/exec"
+  data-trade="hvac"
+  data-business-name="Acme HVAC"
+&gt;&lt;/div&gt;
+&lt;script src="/lead-desk/embed.js" async&gt;&lt;/script&gt;</pre>
+
+        <h2>Google Sheets</h2>
+        <p>See <code>GOOGLE-SHEETS-SETUP.md</code> in this folder — takes about 5 minutes.</p>
+
+        <h2>Or use a config file</h2>
+        <pre>&lt;script
+  src="/lead-desk/embed.js"
+  data-config="/lead-desk/config.json"
+  async
+&gt;&lt;/script&gt;
+&lt;div data-saddle-up-lead-desk&gt;&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="./embed.js" async></script>
+</body>
+</html>

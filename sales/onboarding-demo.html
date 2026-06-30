@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding demo — Saddle Up Lead Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #10B981;
+      --primary-dark: #059669;
+      --primary-soft: rgba(16, 185, 129, 0.12);
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --bg: #0B0B0F;
+      --bg-elevated: #0F172A;
+      --card: rgba(15, 23, 42, 0.92);
+      --border: rgba(148, 163, 184, 0.16);
+      --radius: 16px;
+      --max: 1100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 11, 15, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--primary); }
+
+    .nav a.link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav a.link:hover { color: var(--text); }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    .hero {
+      margin-bottom: 2rem;
+    }
+
+    .hero .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0 0 0.65rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 38rem;
+      margin: 0;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .timeline {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      position: sticky;
+      top: 4.5rem;
+    }
+
+    .timeline h2 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+      font-weight: 700;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+    }
+
+    .step-item:hover { background: rgba(148, 163, 184, 0.08); }
+
+    .step-item.is-active {
+      background: var(--primary-soft);
+    }
+
+    .step-item.is-done .step-item__num {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .step-item.is-locked {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .step-item__num {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.15);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-item__body strong {
+      display: block;
+      font-size: 0.88rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .step-item__body span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      min-height: 420px;
+    }
+
+    .panel--fade {
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .panel .lead {
+      color: var(--muted);
+      margin: 0 0 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 999px;
+      border: none;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn--primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn--primary:hover:not(:disabled) {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn--ghost {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+
+    .mock-stripe {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      max-width: 380px;
+    }
+
+    .mock-stripe__head {
+      background: #635bff;
+      color: #fff;
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .mock-stripe__body {
+      padding: 1rem;
+      background: rgba(11, 11, 15, 0.5);
+    }
+
+    .mock-stripe__line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .mock-stripe__line span:last-child { color: var(--muted); }
+
+    .key-box {
+      background: #0B0B0F;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      font-family: ui-monospace, monospace;
+      font-size: 0.82rem;
+      word-break: break-all;
+      margin: 0.75rem 0;
+    }
+
+    .checklist {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .checklist .mark {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      font-size: 0.7rem;
+      color: transparent;
+      transition: all 0.2s ease;
+    }
+
+    .checklist li.is-done .mark {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tab {
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tab.is-active {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .wp-mock {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .wp-mock__bar {
+      background: #1d2327;
+      color: #fff;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .wp-mock__body {
+      padding: 1rem;
+      background: rgba(11, 11, 15, 0.35);
+    }
+
+    .field {
+      margin-bottom: 0.85rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(11, 11, 15, 0.5);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.88rem;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+
+    pre {
+      background: #0B0B0F;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      overflow-x: auto;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      margin: 0;
+      color: #CBD5E1;
+    }
+
+    pre .hl { color: var(--primary); }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .sheet {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 0.72rem;
+    }
+
+    .sheet__toolbar {
+      background: #107c41;
+      color: #fff;
+      padding: 0.45rem 0.75rem;
+      font-weight: 600;
+    }
+
+    .sheet table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .sheet th,
+    .sheet td {
+      padding: 0.4rem 0.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .sheet th {
+      background: rgba(148, 163, 184, 0.08);
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .sheet tr.row-new td {
+      animation: rowFlash 1.2s ease;
+    }
+
+    @keyframes rowFlash {
+      0% { background: rgba(16, 185, 129, 0.35); }
+      100% { background: transparent; }
+    }
+
+    .mini-form .option {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.45rem;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .mini-form .option.is-selected {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .success-banner {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: #6EE7B7;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .done-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.65rem;
+      margin: 1rem 0;
+    }
+
+    .done-card {
+      padding: 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+
+    .done-card strong { color: var(--primary); }
+
+    .progress-bar {
+      height: 4px;
+      background: rgba(148, 163, 184, 0.15);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .timeline { position: static; }
+      .split { grid-template-columns: 1fr; }
+      .done-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner">
+      <a class="logo" href="index.html">Saddle Up <span>Lead Desk</span></a>
+      <a class="link" href="index.html">← Back to sales page</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Interactive walkthrough</div>
+      <h1>See how onboarding works</h1>
+      <p>Click through the same flow your customers follow after checkout — subscribe, site key, Google Sheet, install, test lead. Nothing is real here; it's a preview.</p>
+    </div>
+
+    <div class="progress-bar"><span id="progress-fill" style="width:0%"></span></div>
+
+    <div class="layout">
+      <aside class="timeline">
+        <h2>Steps</h2>
+        <div id="step-list"></div>
+      </aside>
+
+      <main class="panel panel--fade" id="panel">
+        <!-- rendered by JS -->
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var STEPS = [
+        { id: 'subscribe', title: 'Subscribe', sub: 'Stripe checkout' },
+        { id: 'sitekey', title: 'Site key', sub: 'Copy after payment' },
+        { id: 'sheet', title: 'Google Sheet', sub: 'Apps Script setup' },
+        { id: 'install', title: 'Install', sub: 'WordPress or static' },
+        { id: 'configure', title: 'Configure', sub: 'Paste keys & trade' },
+        { id: 'test', title: 'Test lead', sub: 'Row hits sheet' },
+        { id: 'live', title: 'Go live', sub: 'You\'re done' }
+      ];
+
+      var state = {
+        step: 0,
+        maxStep: 0,
+        siteKey: 'sk_live_demo_8f3k2m9x1p4q',
+        sheetUrl: 'https://script.google.com/macros/s/DEMO_SHEET_ID/exec',
+        platform: 'wordpress',
+        trade: 'hvac',
+        business: 'Acme HVAC',
+        sheetReady: false,
+        sheetTasks: [false, false, false, false],
+        configured: false,
+        testSubmitted: false,
+        testLead: null
+      };
+
+      var stepList = document.getElementById('step-list');
+      var panel = document.getElementById('panel');
+      var progressFill = document.getElementById('progress-fill');
+
+      function scoreLead(urgency, issue) {
+        var score = 30;
+        var u = { emergency: 50, today: 35, this_week: 20, planning: 10 };
+        var i = { no_ac: 40, no_heat: 40, maintenance: 10, quote: 15 };
+        score += (u[urgency] || 15) + (i[issue] || 15);
+        score = Math.min(100, score);
+        var label = score >= 80 ? 'Emergency' : score >= 55 ? 'High Priority' : score >= 35 ? 'Standard' : 'Low Priority';
+        return { value: score, label: label };
+      }
+
+      function renderStepList() {
+        stepList.innerHTML = STEPS.map(function (s, i) {
+          var cls = 'step-item';
+          if (i === state.step) cls += ' is-active';
+          if (i < state.maxStep || (i < state.step)) cls += ' is-done';
+          if (i > state.maxStep) cls += ' is-locked';
+          return (
+            '<button type="button" class="' + cls + '" data-step="' + i + '">' +
+              '<div class="step-item__num">' + (i < state.maxStep && i !== state.step ? '✓' : (i + 1)) + '</div>' +
+              '<div class="step-item__body"><strong>' + s.title + '</strong><span>' + s.sub + '</span></div>' +
+            '</button>'
+          );
+        }).join('');
+
+        stepList.querySelectorAll('.step-item').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var idx = parseInt(btn.getAttribute('data-step'), 10);
+            if (idx <= state.maxStep) {
+              state.step = idx;
+              render();
+            }
+          });
+        });
+      }
+
+      function nextStep() {
+        if (state.step < STEPS.length - 1) {
+          state.step += 1;
+          if (state.step > state.maxStep) state.maxStep = state.step;
+          render();
+        }
+      }
+
+      function prevStep() {
+        if (state.step > 0) {
+          state.step -= 1;
+          render();
+        }
+      }
+
+      function renderSubscribe() {
+        return (
+          '<h3>Step 1 — Subscribe</h3>' +
+          '<p class="lead">Customer picks Contractor ($39/mo) or Agency ($79/mo) and pays through Stripe. No sales call.</p>' +
+          '<div class="mock-stripe">' +
+            '<div class="mock-stripe__head">Stripe Checkout</div>' +
+            '<div class="mock-stripe__body">' +
+              '<div class="mock-stripe__line"><span>Lead Desk — Contractor</span><span>$39.00 / mo</span></div>' +
+              '<div class="mock-stripe__line"><span>Site key + install bundle</span><span>Included</span></div>' +
+              '<div class="mock-stripe__line"><span>Cancel anytime</span><span>✓</span></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="actions">' +
+            '<button type="button" class="btn btn--primary" id="simulate-pay">Simulate payment →</button>' +
+          '</div>'
+        );
+      }
+
+      function renderSiteKey() {
+        return (
+          '<h3>Step 2 — Get your site key</h3>' +
+          '<p class="lead">After payment, Stripe redirects to the success page. The license server creates a site key — the widget checks it on every load.</p>' +
+          '<div class="key-box" id="site-key-display">' + state.siteKey + '</div>' +
+          '<div class="actions">' +
+            '<button type="button" class="btn btn--ghost" id="copy-key">Copy site key</button>' +
+            '<button type="button" class="btn btn--primary" id="continue-key">I saved my key →</button>' +
+          '</div>' +
+          '<p style="font-size:0.82rem;color:var(--muted);margin-top:1rem">If payment stops, the kill switch hides the form until they renew in the billing portal.</p>'
+        );
+      }
+
+      function renderSheet() {
+        var tasks = [
+          'Create a new Google Sheet',
+          'Extensions → Apps Script → paste google-apps-script.js',
+          'Deploy → Web app (Execute as Me, Anyone can access)',
+          'Copy the URL ending in /exec'
+        ];
+        var list = tasks.map(function (t, i) {
+          return '<li class="' + (state.sheetTasks[i] ? 'is-done' : '') + '"><span class="mark">✓</span><span>' + t + '</span></li>';
+        }).join('');
+
+        return (
+          '<h3>Step 3 — Connect Google Sheets</h3>' +
+          '<p class="lead">Leads log to a spreadsheet the customer owns. No backend on your side — ~5 minutes.</p>' +
+          '<ul class="checklist">' + list + '</ul>' +
+          (state.sheetReady
+            ? '<div class="key-box" style="margin-top:0.75rem">' + state.sheetUrl + '</div>'
+            : '') +
+          '<div class="actions">' +
+            (state.sheetReady
+              ? '<button type="button" class="btn btn--primary" id="continue-sheet">Sheet connected →</button>'
+              : '<button type="button" class="btn btn--primary" id="run-sheet-setup">Run setup simulation</button>') +
+            '<button type="button" class="btn btn--ghost" id="back-btn">Back</button>' +
+          '</div>'
+        );
+      }
+
+      function renderInstall() {
+        var wpActive = state.platform === 'wordpress' ? ' is-active' : '';
+        var staticActive = state.platform === 'static' ? ' is-active' : '';
+
+        var wpPanel =
+          '<div class="wp-mock">' +
+            '<div class="wp-mock__bar">WordPress → Lead Desk → Settings</div>' +
+            '<div class="wp-mock__body">' +
+              '<p style="margin:0 0 0.75rem;font-size:0.85rem;color:var(--muted)">Upload <code>saddle-up-lead-desk.zip</code>, activate, then open settings.</p>' +
+              '<div class="field"><label>Site key</label><input type="text" value="' + state.siteKey + '" readonly></div>' +
+              '<div class="field"><label>Google Sheet URL</label><input type="text" value="' + state.sheetUrl + '" readonly></div>' +
+            '</div>' +
+          '</div>';
+
+        var staticPanel =
+          '<pre>&lt;div\n  <span class="hl">data-saddle-up-lead-desk</span>\n  <span class="hl">data-site-key</span>="' + state.siteKey + '"\n  <span class="hl">data-google-sheet-url</span>="' + state.sheetUrl + '"\n  <span class="hl">data-trade</span>="' + state.trade + '"\n  <span class="hl">data-business-name</span>="' + state.business + '"\n&gt;&lt;/div&gt;\n&lt;script src="/lead-desk/embed.js" async&gt;&lt;/script&gt;</pre>';
+
+        return (
+          '<h3>Step 4 — Install on site</h3>' +
+          '<p class="lead">Same product, two paths. Pick the one that matches the client site.</p>' +
+          '<div class="tabs">' +
+            '<button type="button" class="tab' + wpActive + '" data-platform="wordpress">WordPress</button>' +
+            '<button type="button" class="tab' + staticActive + '" data-platform="static">Static HTML</button>' +
+          '</div>' +
+          (state.platform === 'wordpress' ? wpPanel : staticPanel) +
+          '<div class="actions">' +
+            '<button type="button" class="btn btn--primary" id="continue-install">Platform chosen →</button>' +
+            '<button type="button" class="btn btn--ghost" id="back-btn">Back</button>' +
+          '</div>'
+        );
+      }
+
+      function renderConfigure() {
+        return (
+          '<h3>Step 5 — Configure</h3>' +
+          '<p class="lead">Set trade, business name, and colors. WordPress saves in admin; static sites use data attributes or config.json.</p>' +
+          '<div class="split">' +
+            '<div>' +
+              '<div class="field"><label>Site key</label><input type="text" id="cfg-key" value="' + state.siteKey + '"></div>' +
+              '<div class="field"><label>Google Sheet URL</label><input type="text" id="cfg-sheet" value="' + state.sheetUrl + '"></div>' +
+              '<div class="field"><label>Trade</label><select id="cfg-trade">' +
+                ['hvac','plumbing','electrical','roofing','general'].map(function (t) {
+                  return '<option value="' + t + '"' + (state.trade === t ? ' selected' : '') + '>' + t.toUpperCase() + '</option>';
+                }).join('') +
+              '</select></div>' +
+              '<div class="field"><label>Business name</label><input type="text" id="cfg-business" value="' + state.business + '"></div>' +
+            '</div>' +
+            '<div>' +
+              '<p style="font-size:0.85rem;color:var(--muted);margin:0 0 0.5rem">License check runs on load:</p>' +
+              '<pre>GET /v1/license/validate\n?site_key=' + state.siteKey + '\n\n→ { "active": true }</pre>' +
+            '</div>' +
+          '</div>' +
+          '<div class="actions">' +
+            '<button type="button" class="btn btn--primary" id="save-config">Save settings →</button>' +
+            '<button type="button" class="btn btn--ghost" id="back-btn">Back</button>' +
+          '</div>'
+        );
+      }
+
+      function renderTest() {
+        var lead = state.testLead;
+        var rows = lead
+          ? '<tr class="row-new"><td>' + lead.time + '</td><td>' + lead.name + '</td><td>' + lead.phone + '</td><td>' + lead.issue + '</td><td>' + lead.urgency + '</td><td>' + lead.score.label + ' (' + lead.score.value + ')</td><td>' + state.trade.toUpperCase() + '</td></tr>'
+          : '<tr><td colspan="7" style="color:var(--muted);text-align:center">Submit a test lead to populate this row</td></tr>';
+
+        return (
+          '<h3>Step 6 — Send a test lead</h3>' +
+          '<p class="lead">Submit once from the site. Confirm the row lands in Google Sheets with score and urgency.</p>' +
+          '<div class="split">' +
+            '<div class="mini-form" id="test-form">' +
+              (state.testSubmitted
+                ? '<div class="success-banner">✓ Test lead submitted — check the sheet →</div>'
+                : '<div id="test-step-content"></div>') +
+            '</div>' +
+            '<div class="sheet">' +
+              '<div class="sheet__toolbar">Lead Desk — Google Sheet</div>' +
+              '<div style="overflow-x:auto">' +
+                '<table><thead><tr><th>Time</th><th>Name</th><th>Phone</th><th>Issue</th><th>Urgency</th><th>Score</th><th>Trade</th></tr></thead>' +
+                '<tbody id="sheet-body">' + rows + '</tbody></table>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="actions">' +
+            (state.testSubmitted
+              ? '<button type="button" class="btn btn--primary" id="continue-test">Looks good →</button>'
+              : '') +
+            '<button type="button" class="btn btn--ghost" id="back-btn">Back</button>' +
+          '</div>'
+        );
+      }
+
+      function renderLive() {
+        return (
+          '<h3>You\'re live 🎉</h3>' +
+          '<p class="lead">That\'s the full self-serve onboarding — most buyers finish the same day without a call.</p>' +
+          '<div class="done-grid">' +
+            '<div class="done-card"><strong>✓</strong> Subscription active — site key issued</div>' +
+            '<div class="done-card"><strong>✓</strong> Google Sheet receiving leads</div>' +
+            '<div class="done-card"><strong>✓</strong> Widget embedded on contact page</div>' +
+            '<div class="done-card"><strong>✓</strong> Test lead scored and logged</div>' +
+          '</div>' +
+          '<div class="actions">' +
+            '<a href="index.html" class="btn btn--primary">Back to sales page</a>' +
+            '<button type="button" class="btn btn--ghost" id="restart-demo">Restart demo</button>' +
+          '</div>'
+        );
+      }
+
+      function bindPanelEvents() {
+        var back = document.getElementById('back-btn');
+        if (back) back.addEventListener('click', prevStep);
+
+        var pay = document.getElementById('simulate-pay');
+        if (pay) pay.addEventListener('click', nextStep);
+
+        var copyKey = document.getElementById('copy-key');
+        if (copyKey) {
+          copyKey.addEventListener('click', function () {
+            navigator.clipboard.writeText(state.siteKey).then(function () {
+              copyKey.textContent = 'Copied!';
+              setTimeout(function () { copyKey.textContent = 'Copy site key'; }, 2000);
+            });
+          });
+        }
+
+        var continueKey = document.getElementById('continue-key');
+        if (continueKey) continueKey.addEventListener('click', nextStep);
+
+        var runSheet = document.getElementById('run-sheet-setup');
+        if (runSheet) {
+          runSheet.addEventListener('click', function () {
+            runSheet.disabled = true;
+            runSheet.textContent = 'Setting up…';
+            var i = 0;
+            function tick() {
+              if (i < 4) {
+                state.sheetTasks[i] = true;
+                i += 1;
+                render();
+                var btn = document.getElementById('run-sheet-setup');
+                if (btn) {
+                  btn.disabled = true;
+                  btn.textContent = 'Setting up…';
+                }
+                setTimeout(tick, 700);
+              } else {
+                state.sheetReady = true;
+                render();
+              }
+            }
+            tick();
+          });
+        }
+
+        var continueSheet = document.getElementById('continue-sheet');
+        if (continueSheet) continueSheet.addEventListener('click', nextStep);
+
+        document.querySelectorAll('.tab').forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            state.platform = tab.getAttribute('data-platform');
+            render();
+          });
+        });
+
+        var continueInstall = document.getElementById('continue-install');
+        if (continueInstall) continueInstall.addEventListener('click', nextStep);
+
+        var saveConfig = document.getElementById('save-config');
+        if (saveConfig) {
+          saveConfig.addEventListener('click', function () {
+            state.siteKey = document.getElementById('cfg-key').value.trim() || state.siteKey;
+            state.sheetUrl = document.getElementById('cfg-sheet').value.trim() || state.sheetUrl;
+            state.trade = document.getElementById('cfg-trade').value;
+            state.business = document.getElementById('cfg-business').value.trim() || state.business;
+            state.configured = true;
+            nextStep();
+          });
+        }
+
+        var continueTest = document.getElementById('continue-test');
+        if (continueTest) continueTest.addEventListener('click', nextStep);
+
+        var restart = document.getElementById('restart-demo');
+        if (restart) {
+          restart.addEventListener('click', function () {
+            state.step = 0;
+            state.maxStep = 0;
+            state.sheetReady = false;
+            state.sheetTasks = [false, false, false, false];
+            state.configured = false;
+            state.testSubmitted = false;
+            state.testLead = null;
+            state.platform = 'wordpress';
+            render();
+          });
+        }
+
+        if (state.step === 5 && !state.testSubmitted) initTestForm();
+      }
+
+      function initTestForm() {
+        var testState = { miniStep: 1, issue: '', urgency: '', name: '', phone: '' };
+        var container = document.getElementById('test-step-content');
+        if (!container) return;
+
+        function renderMini() {
+          if (testState.miniStep === 1) {
+            container.innerHTML =
+              '<p style="font-size:0.82rem;color:var(--muted);margin:0 0 0.5rem">Pick issue</p>' +
+              ['no_ac|No AC','no_heat|No heat','maintenance|Maintenance'].map(function (pair) {
+                var p = pair.split('|');
+                var sel = testState.issue === p[0] ? ' is-selected' : '';
+                return '<button type="button" class="option' + sel + '" data-issue="' + p[0] + '">' + p[1] + '</button>';
+              }).join('') +
+              '<button type="button" class="btn btn--primary" style="margin-top:0.5rem;width:100%" id="mini-next"' + (testState.issue ? '' : ' disabled') + '>Next</button>';
+          } else if (testState.miniStep === 2) {
+            container.innerHTML =
+              '<p style="font-size:0.82rem;color:var(--muted);margin:0 0 0.5rem">Pick urgency</p>' +
+              ['emergency|Emergency','today|Today','planning|Planning'].map(function (pair) {
+                var p = pair.split('|');
+                var sel = testState.urgency === p[0] ? ' is-selected' : '';
+                return '<button type="button" class="option' + sel + '" data-urgency="' + p[0] + '">' + p[1] + '</button>';
+              }).join('') +
+              '<button type="button" class="btn btn--primary" style="margin-top:0.5rem;width:100%" id="mini-next"' + (testState.urgency ? '' : ' disabled') + '>Next</button>';
+          } else {
+            container.innerHTML =
+              '<div class="field"><label>Name</label><input type="text" id="test-name" placeholder="Jane Smith"></div>' +
+              '<div class="field"><label>Phone</label><input type="tel" id="test-phone" placeholder="(555) 555-0100"></div>' +
+              '<button type="button" class="btn btn--primary" style="width:100%" id="mini-submit">Submit test lead</button>';
+          }
+
+          container.querySelectorAll('[data-issue]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              testState.issue = btn.getAttribute('data-issue');
+              renderMini();
+            });
+          });
+
+          container.querySelectorAll('[data-urgency]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              testState.urgency = btn.getAttribute('data-urgency');
+              renderMini();
+            });
+          });
+
+          var miniNext = document.getElementById('mini-next');
+          if (miniNext) {
+            miniNext.addEventListener('click', function () {
+              testState.miniStep += 1;
+              renderMini();
+            });
+          }
+
+          var miniSubmit = document.getElementById('mini-submit');
+          if (miniSubmit) {
+            miniSubmit.addEventListener('click', function () {
+              var name = document.getElementById('test-name').value.trim();
+              var phone = document.getElementById('test-phone').value.trim();
+              if (!name || !phone) return;
+              var score = scoreLead(testState.urgency, testState.issue);
+              var now = new Date();
+              var time = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+              state.testLead = {
+                time: time,
+                name: name,
+                phone: phone,
+                issue: testState.issue.replace('_', ' '),
+                urgency: testState.urgency.replace('_', ' '),
+                score: score
+              };
+              state.testSubmitted = true;
+              render();
+            });
+          }
+        }
+
+        renderMini();
+      }
+
+      function render() {
+        progressFill.style.width = ((state.step + 1) / STEPS.length * 100) + '%';
+        renderStepList();
+
+        panel.classList.remove('panel--fade');
+        void panel.offsetWidth;
+        panel.classList.add('panel--fade');
+
+        var html = '';
+        switch (STEPS[state.step].id) {
+          case 'subscribe': html = renderSubscribe(); break;
+          case 'sitekey': html = renderSiteKey(); break;
+          case 'sheet': html = renderSheet(); break;
+          case 'install': html = renderInstall(); break;
+          case 'configure': html = renderConfigure(); break;
+          case 'test': html = renderTest(); break;
+          case 'live': html = renderLive(); break;
+        }
+        panel.innerHTML = html;
+        bindPanelEvents();
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>

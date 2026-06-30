@@ -1,0 +1,43 @@
+{
+  "productName": "Saddle Up Lead Desk",
+  "tagline": "Turn website visitors into scored, prioritized leads — billed monthly, canceled anytime.",
+  "licenseApiUrl": "https://api.saddleupai.com",
+  "supportEmail": "hello@saddleupai.com",
+  "demoUrl": "/sales/lead-desk/demo.html",
+  "downloadUrl": "/downloads/lead-desk-bundle.zip",
+  "successUrl": "https://bellsplumbingutah.com/sales/success.html",
+  "billingPortalUrl": "https://billing.stripe.com/p/login/YOUR_PORTAL",
+  "tiers": {
+    "contractor": {
+      "name": "Contractor",
+      "badge": "",
+      "priceDisplay": "$39",
+      "priceInterval": "/mo",
+      "priceNote": "1 site · Cancel anytime · Site key required",
+      "stripePaymentLink": "https://buy.stripe.com/YOUR_CONTRACTOR_MONTHLY",
+      "highlights": [
+        "WordPress plugin + static embed",
+        "Google Sheets connector",
+        "All 5 trade templates",
+        "Lead scoring + after-hours mode",
+        "Kill switch managed automatically"
+      ]
+    },
+    "agency": {
+      "name": "Agency",
+      "badge": "Most popular",
+      "priceDisplay": "$79",
+      "priceInterval": "/mo",
+      "priceNote": "Unlimited client sites · Cancel anytime",
+      "stripePaymentLink": "https://buy.stripe.com/YOUR_AGENCY_MONTHLY",
+      "featured": true,
+      "highlights": [
+        "Everything in Contractor",
+        "Unlimited client deployments",
+        "One subscription — deploy with your site key on unlimited client sites",
+        "Priority email support",
+        "Agency install playbook"
+      ]
+    }
+  }
+}
