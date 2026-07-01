@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" role="img" aria-label="Aquacare Fish Aquarium Cleaning logo">
+  <defs>
+    <linearGradient id="gradA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#72d2f6"/>
+      <stop offset="50%" stop-color="#2d9ad9"/>
+      <stop offset="100%" stop-color="#0a3568"/>
+    </linearGradient>
+    <linearGradient id="gradB" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#62c8ef"/>
+      <stop offset="50%" stop-color="#2288cc"/>
+      <stop offset="100%" stop-color="#0b3d7a"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#0b3d7a" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="520" height="420" fill="#e8f4fb"/>
+
+  <g transform="translate(260 150)" filter="url(#shadow)">
+    <!-- Left fish: swimming downward -->
+    <g>
+      <path fill="url(#gradA)" d="
+        M-12 -62
+        C-40 -58 -62 -36 -66 -8
+        C-70 20 -52 48 -24 58
+        C-4 64 18 56 30 40
+        C38 28 38 12 28 2
+        C18 -8 2 -12 -12 -6
+        C-26 0 -34 16 -28 30
+        C-22 42 -6 48 8 42
+        C18 38 24 26 22 14
+        C20 2 8 -6 -4 -4
+        C-14 -2 -22 6 -20 16
+        C-18 24 -10 30 0 28
+        C8 26 14 18 12 10
+        C10 2 2 -4 -6 -2
+        Z"/>
+      <path fill="url(#gradA)" d="M-66 -8 C-84 -14 -94 4 -86 22 C-80 34 -68 38 -58 30 Z"/>
+      <path fill="#3aa8dc" d="M-34 -54 C-26 -68 -12 -72 -2 -62 C-12 -58 -24 -54 -34 -54 Z"/>
+      <path fill="#6ecff5" opacity="0.9" d="M-14 20 C-4 30 10 28 20 18 C10 14 -2 14 -14 20 Z"/>
+      <circle cx="-48" cy="6" r="5" fill="#ffffff"/>
+      <circle cx="-46.5" cy="6" r="2.2" fill="#0b3d7a"/>
+    </g>
+
+    <!-- Right fish: swimming upward -->
+    <g>
+      <path fill="url(#gradB)" d="
+        M12 62
+        C40 58 62 36 66 8
+        C70 -20 52 -48 24 -58
+        C4 -64 -18 -56 -30 -40
+        C-38 -28 -38 -12 -28 -2
+        C-18 8 -2 12 12 6
+        C26 0 34 -16 28 -30
+        C22 -42 6 -48 -8 -42
+        C-18 -38 -24 -26 -22 -14
+        C-20 -2 -8 6 4 4
+        C14 2 22 -6 20 -16
+        C18 -24 10 -30 0 -28
+        C-8 -26 -14 -18 -12 -10
+        C-10 -2 -2 4 6 2
+        Z"/>
+      <path fill="url(#gradB)" d="M66 8 C84 14 94 -4 86 -22 C80 -34 68 -38 58 -30 Z"/>
+      <path fill="#2a8fd4" d="M34 54 C26 68 12 72 2 62 C12 58 24 54 34 54 Z"/>
+      <path fill="#5ec4f0" opacity="0.9" d="M14 -20 C4 -30 -10 -28 -20 -18 C-10 -14 2 -14 14 -20 Z"/>
+      <circle cx="48" cy="-6" r="5" fill="#ffffff"/>
+      <circle cx="46.5" cy="-6" r="2.2" fill="#0b3d7a"/>
+    </g>
+
+    <text x="0" y="14"
+          text-anchor="middle"
+          font-family="Arial, Helvetica, sans-serif"
+          font-size="54"
+          font-weight="700"
+          fill="#0b3d7a">A</text>
+  </g>
+
+  <text x="260" y="288"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="34"
+        font-weight="700"
+        letter-spacing="2"
+        fill="#0b3d7a">AQUACARE FISH</text>
+
+  <text x="260" y="328"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="16"
+        font-weight="500"
+        letter-spacing="8.5"
+        fill="#2a8fd4">AQUARIUM CLEANING</text>
+</svg>
